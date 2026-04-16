@@ -41,7 +41,7 @@
       position: fixed; top: 1.25rem; right: 1.25rem; z-index: 999;
       display: flex; align-items: center; border-radius: 50px;
       border: 1px solid var(--glass-border);
-      background: rgba(17,24,39,0.8);
+      background: rgba(17,24,39,0.85);
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       overflow: hidden; opacity: 0; animation: fadeUp 0.8s ease-out 2s forwards;
     }
@@ -88,7 +88,20 @@
     .scroll-line { width: 1px; height: 40px; background: linear-gradient(180deg, var(--gold) 0%, transparent 100%); animation: scroll-pulse 2s ease-in-out infinite; }
     @keyframes scroll-pulse { 0%, 100% { opacity: 0.3; transform: scaleY(0.6); transform-origin: top; } 50% { opacity: 1; transform: scaleY(1); } }
 
-    .social-section { position: relative; padding: 5rem 1.5rem 6rem; background: linear-gradient(180deg, var(--dark) 0%, var(--dark-light) 50%, var(--dark) 100%); }
+    /* ===== INFO BAR ===== */
+    .info-bar {
+      display: flex; align-items: center; justify-content: center;
+      gap: 2rem; padding: 1rem 1.5rem;
+      background: linear-gradient(90deg, var(--dark) 0%, var(--dark-light) 50%, var(--dark) 100%);
+      border-bottom: 1px solid rgba(250,204,21,0.06);
+      flex-wrap: wrap;
+    }
+    .info-item { display: flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 400; color: rgba(255,255,255,0.45); white-space: nowrap; }
+    .info-item svg { width: 14px; height: 14px; color: var(--gold-dark); flex-shrink: 0; }
+    .info-item strong { color: var(--gold-light); font-weight: 500; }
+    .info-divider { width: 1px; height: 16px; background: rgba(250,204,21,0.12); }
+
+    .social-section { position: relative; padding: 5rem 1.5rem 6rem; background: linear-gradient(180deg, var(--dark-light) 0%, var(--dark) 100%); }
     .social-section::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 80px; background: linear-gradient(180deg, transparent 0%, var(--gold) 100%); }
     .section-label { text-align: center; margin-bottom: 3.5rem; }
     .section-label-overline { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
@@ -143,7 +156,7 @@
     .featured-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.4,0,0.2,1); filter: brightness(0.9) saturate(0.95); }
     .featured-card:hover .featured-card-img img { transform: scale(1.1); filter: brightness(1) saturate(1.1); }
     .featured-card-img::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: linear-gradient(transparent, rgba(17,24,39,0.8)); }
-    .featured-card-tag { position: absolute; top: 1rem; left: 1rem; padding: 6px 14px; border-radius: 50px; background: rgba(17,24,39,0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(250,204,21,0.2); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); z-index: 1; }
+    .featured-card-tag { position: absolute; top: 1rem; left: 1rem; padding: 6px 14px; border-radius: 50px; background: rgba(17,24,39,0.7); backdrop-filter: blur(10px); border: 1px solid rgba(250,204,21,0.2); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); z-index: 1; }
     body.rtl .featured-card-tag { left: auto; right: 1rem; }
     .featured-card-body { padding: 1.5rem; }
     .featured-card-title { font-size: 1.15rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem; }
@@ -160,7 +173,7 @@
     .footer { position: relative; padding: 3rem 1.5rem; background: var(--dark); border-top: 1px solid rgba(250,204,21,0.08); text-align: center; }
     .footer-logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; }
     .footer-logo-icon { width: 32px; height: 32px; color: var(--gold); }
-    .footer-logo-text { font-size: 1.2rem; font-weight: 600; color: #fff; letter-spacing: 0.02em; }
+    .footer-logo-text { font-size: 1.2rem; font-weight: 600; color: #fff; }
     .footer-social { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
     .footer-social a { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid rgba(255,255,255,0.08); background: transparent; transition: all 0.3s; color: rgba(255,255,255,0.4); }
     .footer-social a:hover { border-color: var(--gold); color: var(--gold); background: rgba(250,204,21,0.05); transform: translateY(-2px); }
@@ -168,13 +181,13 @@
     .footer-copy { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; }
     .footer-copy .gold { color: var(--gold-dark); }
 
-    .lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; align-items: center; justify-content: center; padding: 2rem; opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); cursor: pointer; }
+    .lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.92); backdrop-filter: blur(20px); display: flex; align-items: center; justify-content: center; padding: 2rem; opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); cursor: pointer; }
     .lightbox.active { opacity: 1; visibility: visible; }
     .lightbox img { max-width: 90%; max-height: 85vh; object-fit: contain; border-radius: 12px; transform: scale(0.9); transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
     .lightbox.active img { transform: scale(1); }
     .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: #fff; cursor: pointer; transition: all 0.3s; }
     body.rtl .lightbox-close { right: auto; left: 1.5rem; }
-    .lightbox-close:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); }
+    .lightbox-close:hover { background: rgba(255,255,255,0.15); }
     .lightbox-close svg { width: 20px; height: 20px; }
 
     .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
@@ -183,116 +196,159 @@
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeUpScale { to { opacity: 1; transform: translateY(0) scale(1); } }
 
-    /* ============================== */
+    /* ============================= */
     /* ===== AI CHATBOT WIDGET ===== */
-    /* ============================== */
+    /* ============================= */
     .chat-fab {
       position: fixed;
-      bottom: 1.75rem;
-      right: 1.75rem;
+      bottom: 2rem;
+      right: 2rem;
       z-index: 998;
-      width: 64px;
-      height: 64px;
+      width: 72px;
+      height: 72px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    body.rtl .chat-fab { right: auto; left: 2rem; }
+
+    .chat-fab-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid rgba(250,204,21,0.3);
+      animation: ring-rotate 8s linear infinite;
+      border-top-color: var(--gold);
+      border-right-color: transparent;
+    }
+
+    .chat-fab-ring-2 {
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      border: 1px solid rgba(250,204,21,0.12);
+      animation: ring-rotate 12s linear infinite reverse;
+      border-bottom-color: rgba(250,204,21,0.3);
+      border-left-color: transparent;
+    }
+
+    @keyframes ring-rotate { to { transform: rotate(360deg); } }
+
+    .chat-fab-glow {
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(250,204,21,0.2) 0%, transparent 70%);
+      animation: fab-glow-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes fab-glow-pulse {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+
+    .chat-fab-btn {
+      position: relative;
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
       border: 2px solid var(--gold);
-      background: linear-gradient(135deg, var(--dark-light) 0%, var(--dark) 100%);
+      background: linear-gradient(145deg, #1a2332 0%, #0f172a 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 8px 32px rgba(250,204,21,0.25), 0 0 0 0 rgba(250,204,21,0.3);
+      box-shadow: 0 8px 32px rgba(250,204,21,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
       transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-      animation: fab-pulse 3s ease-in-out infinite;
+      z-index: 2;
     }
 
-    body.rtl .chat-fab { right: auto; left: 1.75rem; }
-
-    .chat-fab:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 40px rgba(250,204,21,0.35), 0 0 0 8px rgba(250,204,21,0.08);
+    .chat-fab:hover .chat-fab-btn {
+      transform: scale(1.08);
+      box-shadow: 0 12px 48px rgba(250,204,21,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
     }
 
-    .chat-fab.active {
-      animation: none;
-      transform: scale(0.9) rotate(90deg);
+    .chat-fab.active .chat-fab-btn {
+      transform: scale(0.92) rotate(180deg);
       box-shadow: 0 4px 16px rgba(250,204,21,0.15);
     }
 
-    @keyframes fab-pulse {
-      0%, 100% { box-shadow: 0 8px 32px rgba(250,204,21,0.25), 0 0 0 0 rgba(250,204,21,0.3); }
-      50% { box-shadow: 0 8px 32px rgba(250,204,21,0.25), 0 0 0 12px rgba(250,204,21,0); }
-    }
+    .chat-fab.active .chat-fab-ring,
+    .chat-fab.active .chat-fab-ring-2,
+    .chat-fab.active .chat-fab-glow { animation: none; opacity: 0; }
 
-    .chat-fab svg { width: 28px; height: 28px; color: var(--gold); transition: transform 0.4s; }
-    .chat-fab.active svg { transform: rotate(-90deg); }
+    .chat-fab-btn svg { width: 30px; height: 30px; color: var(--gold); }
+    .chat-fab-btn .fab-icon-close { display: none; }
+    .chat-fab.active .chat-fab-btn .fab-icon-open { display: none; }
+    .chat-fab.active .chat-fab-btn .fab-icon-close { display: block; }
 
     .chat-fab-label {
       position: absolute;
-      bottom: calc(100% + 12px);
-      right: 0;
+      bottom: calc(100% + 16px);
+      right: -8px;
       white-space: nowrap;
-      padding: 10px 16px;
-      border-radius: 12px 12px 12px 4px;
-      background: var(--dark-light);
-      border: 1px solid var(--glass-border);
-      font-size: 0.75rem;
+      padding: 12px 18px;
+      border-radius: 14px 14px 14px 4px;
+      background: linear-gradient(135deg, rgba(31,41,55,0.98), rgba(17,24,39,0.98));
+      border: 1px solid rgba(250,204,21,0.2);
+      font-size: 0.78rem;
       font-weight: 500;
       color: var(--gold-light);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 20px rgba(250,204,21,0.05);
       opacity: 0;
-      transform: translateY(8px);
-      transition: all 0.4s;
+      transform: translateY(10px) scale(0.95);
+      transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
       pointer-events: none;
+      z-index: 3;
     }
 
-    body.rtl .chat-fab-label { right: auto; left: 0; border-radius: 12px 12px 4px 12px; }
+    body.rtl .chat-fab-label { right: auto; left: -8px; border-radius: 14px 14px 4px 14px; }
 
     .chat-fab-label::after {
       content: '';
       position: absolute;
-      bottom: -6px;
-      right: 16px;
-      width: 12px;
-      height: 12px;
-      background: var(--dark-light);
-      border-right: 1px solid var(--glass-border);
-      border-bottom: 1px solid var(--glass-border);
+      bottom: -7px;
+      right: 18px;
+      width: 14px;
+      height: 14px;
+      background: rgba(17,24,39,0.98);
+      border-right: 1px solid rgba(250,204,21,0.2);
+      border-bottom: 1px solid rgba(250,204,21,0.2);
       transform: rotate(45deg);
     }
 
-    body.rtl .chat-fab-label::after { right: auto; left: 16px; }
+    body.rtl .chat-fab-label::after { right: auto; left: 18px; }
 
-    .chat-fab:hover .chat-fab-label,
-    .chat-fab-label.show {
+    .chat-fab:hover .chat-fab-label, .chat-fab-label.show {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
 
     /* Chat Window */
     .chat-window {
       position: fixed;
-      bottom: 6rem;
-      right: 1.75rem;
+      bottom: 7.5rem;
+      right: 2rem;
       z-index: 997;
-      width: 380px;
+      width: 400px;
       max-width: calc(100vw - 2rem);
-      max-height: 560px;
-      border-radius: 24px;
-      border: 1px solid rgba(250,204,21,0.15);
-      background: rgba(17,24,39,0.95);
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
-      box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 60px rgba(250,204,21,0.06);
+      height: 580px;
+      max-height: calc(100vh - 10rem);
+      border-radius: 28px;
+      border: 1px solid rgba(250,204,21,0.12);
+      background: linear-gradient(180deg, rgba(17,24,39,0.97) 0%, rgba(15,23,42,0.98) 100%);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      box-shadow: 0 32px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(250,204,21,0.05), 0 0 80px rgba(250,204,21,0.04);
       display: flex;
       flex-direction: column;
       overflow: hidden;
       opacity: 0;
       visibility: hidden;
-      transform: translateY(20px) scale(0.95);
-      transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+      transform: translateY(24px) scale(0.92);
+      transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
     }
 
-    body.rtl .chat-window { right: auto; left: 1.75rem; }
+    body.rtl .chat-window { right: auto; left: 2rem; }
 
     .chat-window.open {
       opacity: 1;
@@ -302,39 +358,52 @@
 
     .chat-header {
       padding: 1.25rem 1.25rem 1rem;
-      border-bottom: 1px solid rgba(250,204,21,0.08);
+      border-bottom: 1px solid rgba(250,204,21,0.06);
       display: flex;
       align-items: center;
       gap: 12px;
       flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(250,204,21,0.04) 0%, transparent 100%);
     }
 
-    .chat-header-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(250,204,21,0.2), rgba(250,204,21,0.05));
+    .chat-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(250,204,21,0.2) 0%, rgba(250,204,21,0.05) 100%);
       border: 1px solid rgba(250,204,21,0.2);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      position: relative;
     }
 
-    .chat-header-avatar svg { width: 22px; height: 22px; color: var(--gold); }
+    .chat-avatar svg { width: 24px; height: 24px; color: var(--gold); }
 
-    .chat-header-info { flex: 1; min-width: 0; }
-    .chat-header-name { font-size: 0.9rem; font-weight: 600; color: #fff; }
-    .chat-header-status { font-size: 0.65rem; font-weight: 400; color: rgba(250,204,21,0.7); display: flex; align-items: center; gap: 5px; }
-    .chat-header-status .status-dot { width: 5px; height: 5px; border-radius: 50%; background: #22c55e; animation: pulse-dot 2s ease-in-out infinite; }
-
-    .chat-close-btn {
-      width: 36px;
-      height: 36px;
+    .chat-avatar-online {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: transparent;
-      color: rgba(255,255,255,0.4);
+      background: #22c55e;
+      border: 2px solid var(--dark);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    .chat-h-info { flex: 1; min-width: 0; }
+    .chat-h-name { font-size: 0.9rem; font-weight: 600; color: #fff; }
+    .chat-h-status { font-size: 0.65rem; font-weight: 400; color: rgba(34,197,94,0.8); display: flex; align-items: center; gap: 5px; }
+
+    .chat-x-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.3);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -343,66 +412,68 @@
       flex-shrink: 0;
     }
 
-    .chat-close-btn:hover { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.15); }
-    .chat-close-btn svg { width: 16px; height: 16px; }
+    .chat-x-btn:hover { background: rgba(239,68,68,0.15); color: #ef4444; border-color: rgba(239,68,68,0.2); }
+    .chat-x-btn svg { width: 16px; height: 16px; }
 
     .chat-body {
       flex: 1;
       overflow-y: auto;
-      padding: 1rem 1.25rem;
+      padding: 1.25rem;
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
       scrollbar-width: thin;
-      scrollbar-color: rgba(250,204,21,0.2) transparent;
+      scrollbar-color: rgba(250,204,21,0.15) transparent;
     }
 
-    .chat-body::-webkit-scrollbar { width: 4px; }
-    .chat-body::-webkit-scrollbar-thumb { background: rgba(250,204,21,0.2); border-radius: 2px; }
+    .chat-body::-webkit-scrollbar { width: 3px; }
+    .chat-body::-webkit-scrollbar-thumb { background: rgba(250,204,21,0.15); border-radius: 2px; }
 
     .chat-msg {
       max-width: 88%;
-      padding: 0.75rem 1rem;
-      border-radius: 16px;
+      padding: 0.8rem 1.1rem;
+      border-radius: 18px;
       font-size: 0.8rem;
-      line-height: 1.65;
+      line-height: 1.7;
       font-weight: 400;
-      animation: msg-in 0.35s ease-out;
+      animation: msg-in 0.4s cubic-bezier(0.34,1.56,0.64,1);
     }
 
     @keyframes msg-in {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(12px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .chat-msg.bot {
       align-self: flex-start;
-      background: rgba(250,204,21,0.08);
-      border: 1px solid rgba(250,204,21,0.1);
+      background: linear-gradient(135deg, rgba(250,204,21,0.08) 0%, rgba(250,204,21,0.03) 100%);
+      border: 1px solid rgba(250,204,21,0.08);
       color: rgba(255,255,255,0.85);
-      border-bottom-left-radius: 4px;
+      border-bottom-left-radius: 6px;
     }
 
-    body.rtl .chat-msg.bot { border-bottom-left-radius: 16px; border-bottom-right-radius: 4px; }
+    body.rtl .chat-msg.bot { border-bottom-left-radius: 18px; border-bottom-right-radius: 6px; }
 
     .chat-msg.user {
       align-self: flex-end;
-      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
       color: var(--dark);
       font-weight: 500;
-      border-bottom-right-radius: 4px;
+      border-bottom-right-radius: 6px;
     }
 
-    body.rtl .chat-msg.user { border-bottom-right-radius: 16px; border-bottom-left-radius: 4px; }
+    body.rtl .chat-msg.user { border-bottom-right-radius: 18px; border-bottom-left-radius: 6px; }
+
+    .chat-msg em { font-style: normal; color: var(--gold); }
 
     .chat-questions {
       padding: 0.75rem 1.25rem 1.25rem;
-      border-top: 1px solid rgba(250,204,21,0.06);
+      border-top: 1px solid rgba(250,204,21,0.04);
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       flex-shrink: 0;
-      max-height: 200px;
+      max-height: 220px;
       overflow-y: auto;
       scrollbar-width: none;
     }
@@ -410,11 +481,11 @@
     .chat-questions::-webkit-scrollbar { display: none; }
 
     .chat-q-btn {
-      padding: 7px 14px;
+      padding: 8px 15px;
       border-radius: 50px;
-      border: 1px solid rgba(250,204,21,0.15);
-      background: rgba(250,204,21,0.04);
-      color: rgba(255,255,255,0.6);
+      border: 1px solid rgba(250,204,21,0.12);
+      background: rgba(250,204,21,0.03);
+      color: rgba(255,255,255,0.55);
       font-family: 'Poppins', sans-serif;
       font-size: 0.7rem;
       font-weight: 400;
@@ -427,94 +498,57 @@
       border-color: rgba(250,204,21,0.4);
       background: rgba(250,204,21,0.1);
       color: var(--gold-light);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(250,204,21,0.1);
     }
 
-    .chat-q-btn:active { transform: scale(0.97); }
+    .chat-q-btn:active { transform: scale(0.96); }
+    .chat-q-btn.used { opacity: 0.3; pointer-events: none; transform: scale(0.95); }
 
-    .chat-typing {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 0.75rem 1rem;
-    }
-
-    .chat-typing span {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--gold);
-      opacity: 0.4;
-      animation: typing-bounce 1.4s ease-in-out infinite;
-    }
-
+    .chat-typing { display: flex; align-items: center; gap: 5px; padding: 0.8rem 1.1rem; }
+    .chat-typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); opacity: 0.3; animation: typing-bounce 1.4s ease-in-out infinite; }
     .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
     .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes typing-bounce {
-      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-      30% { transform: translateY(-6px); opacity: 1; }
-    }
+    @keyframes typing-bounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.3; } 30% { transform: translateY(-8px); opacity: 1; } }
 
     /* Exit Toast */
     .chat-toast {
       position: fixed;
-      bottom: 1.75rem;
-      right: 1.75rem;
+      bottom: 2rem;
+      right: 2rem;
       z-index: 999;
-      width: 340px;
+      width: 360px;
       max-width: calc(100vw - 2rem);
-      padding: 1rem 1.25rem;
-      border-radius: 20px;
-      border: 1px solid rgba(250,204,21,0.2);
-      background: rgba(17,24,39,0.95);
+      padding: 1.1rem 1.4rem;
+      border-radius: 22px;
+      border: 1px solid rgba(250,204,21,0.15);
+      background: linear-gradient(135deg, rgba(17,24,39,0.97), rgba(15,23,42,0.98));
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 40px rgba(250,204,21,0.08);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(250,204,21,0.06);
       opacity: 0;
       visibility: hidden;
-      transform: translateY(20px);
-      transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+      transform: translateY(24px) scale(0.95);
+      transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
     }
 
-    body.rtl .chat-toast { right: auto; left: 1.75rem; }
+    body.rtl .chat-toast { right: auto; left: 2rem; }
 
-    .chat-toast.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
+    .chat-toast.show { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
 
-    .chat-toast-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 0.5rem;
-    }
+    .chat-toast-dish { font-size: 0.85rem; font-weight: 600; color: var(--gold); margin-bottom: 0.4rem; }
 
-    .chat-toast-dish {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--gold);
-    }
-
-    .chat-toast-body {
-      font-size: 0.72rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.6;
-    }
+    .chat-toast-body { font-size: 0.73rem; font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.65; }
 
     .chat-toast-close {
       position: absolute;
-      top: 0.75rem;
-      right: 0.75rem;
-      width: 24px;
-      height: 24px;
+      top: 0.8rem;
+      right: 0.8rem;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
       border: none;
       background: transparent;
-      color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.25);
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -522,20 +556,13 @@
       transition: all 0.3s;
     }
 
-    body.rtl .chat-toast-close { right: auto; left: 0.75rem; }
+    body.rtl .chat-toast-close { right: auto; left: 0.8rem; }
     .chat-toast-close:hover { color: #fff; background: rgba(255,255,255,0.1); }
     .chat-toast-close svg { width: 14px; height: 14px; }
 
-    @media (max-width: 1024px) {
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
-      .gallery-item:nth-child(1) img { min-height: 320px; }
-      .gallery-item:nth-child(4) { grid-column: span 1; }
-      .featured-grid { grid-template-columns: repeat(2, 1fr); }
-      .featured-grid .featured-card:last-child { grid-column: span 2; max-width: 50%; margin: 0 auto; }
-    }
-
     @media (max-width: 768px) {
+      .info-bar { gap: 1rem; padding: 0.75rem 1rem; }
+      .info-divider { display: none; }
       .hero-logo-icon { width: 56px; height: 56px; }
       .social-grid { grid-template-columns: 1fr; max-width: 400px; }
       .gallery-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
@@ -546,12 +573,11 @@
       .featured-grid .featured-card:last-child { grid-column: span 1; max-width: 100%; }
       .featured-card-img { height: 220px; }
       .hero-scroll-indicator { display: none; }
-      .chat-window { bottom: 5.5rem; right: 1rem; width: calc(100vw - 2rem); max-height: 70vh; }
-      body.rtl .chat-window { left: 1rem; }
-      .chat-fab { bottom: 1.25rem; right: 1rem; width: 56px; height: 56px; }
-      body.rtl .chat-fab { left: 1rem; }
-      .chat-toast { right: 1rem; bottom: 1.25rem; width: calc(100vw - 2rem); }
-      body.rtl .chat-toast { left: 1rem; }
+      .chat-fab { bottom: 1.25rem; right: 1.25rem; width: 64px; height: 64px; }
+      body.rtl .chat-fab { left: 1.25rem; }
+      .chat-window { bottom: 6rem; right: 0.75rem; left: 0.75rem; width: auto; height: calc(100vh - 8rem); max-height: none; border-radius: 24px 24px 0 0; }
+      .chat-toast { right: 0.75rem; bottom: 1.25rem; left: 0.75rem; width: auto; }
+      body.rtl .chat-toast { left: 0.75rem; }
     }
 
     @media (max-width: 480px) {
@@ -564,81 +590,63 @@
 </head>
 <body>
 
-  <!-- Language Switcher -->
   <div class="lang-switcher" id="langSwitcher">
     <button class="lang-btn active" data-lang="en">EN</button>
     <button class="lang-btn" data-lang="ar">عربي</button>
     <button class="lang-btn" data-lang="fr">FR</button>
   </div>
 
-  <!-- Particles -->
   <div class="particles" id="particles"></div>
 
-  <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
+    <button class="lightbox-close" id="lightboxClose"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <img src="" alt="" id="lightboxImg">
   </div>
 
-  <!-- AI Chatbot -->
+  <!-- AI Chatbot FAB -->
   <div class="chat-fab" id="chatFab">
+    <div class="chat-fab-glow"></div>
+    <div class="chat-fab-ring"></div>
+    <div class="chat-fab-ring-2"></div>
+    <div class="chat-fab-btn">
+      <svg class="fab-icon-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><circle cx="9" cy="10" r="0.5" fill="currentColor" stroke="none"/><circle cx="12" cy="10" r="0.5" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="0.5" fill="currentColor" stroke="none"/></svg>
+      <svg class="fab-icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
     <div class="chat-fab-label" id="chatFabLabel" data-i18n="chat_fab_label">أهلاً بك عند الشيف رحيم 👨‍🍳</div>
-    <svg id="chatFabIconOpen" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    <svg id="chatFabIconClose" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </div>
 
   <div class="chat-window" id="chatWindow">
     <div class="chat-header">
-      <div class="chat-header-avatar">
+      <div class="chat-avatar">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        <div class="chat-avatar-online"></div>
       </div>
-      <div class="chat-header-info">
-        <div class="chat-header-name" data-i18n="chat_header_name">مساعد الشيف رحيم</div>
-        <div class="chat-header-status"><span class="status-dot"></span><span data-i18n="chat_header_status">متصل الآن</span></div>
+      <div class="chat-h-info">
+        <div class="chat-h-name" data-i18n="chat_h_name">مساعد الشيف رحيم</div>
+        <div class="chat-h-status" data-i18n="chat_h_status">متصل الآن</div>
       </div>
-      <button class="chat-close-btn" id="chatCloseBtn" aria-label="Close chat">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
+      <button class="chat-x-btn" id="chatXBtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <div class="chat-body" id="chatBody"></div>
-    <div class="chat-questions" id="chatQuestions"></div>
+    <div class="chat-questions" id="chatQs"></div>
   </div>
 
-  <!-- Exit Toast -->
   <div class="chat-toast" id="chatToast">
-    <button class="chat-toast-close" id="chatToastClose" aria-label="Dismiss">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <div class="chat-toast-header">
-      <span class="chat-toast-dish" id="toastDish"></span>
-    </div>
+    <button class="chat-toast-close" id="toastClose"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="chat-toast-dish" id="toastDish"></div>
     <div class="chat-toast-body" id="toastBody"></div>
   </div>
 
-  <!-- ===== HERO ===== -->
+  <!-- HERO -->
   <section class="hero" id="hero">
-    <div class="hero-bg">
-      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&h=1080&fit=crop&q=80" alt="Fine Dining">
-    </div>
+    <div class="hero-bg"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&h=1080&fit=crop&q=80" alt="Fine Dining"></div>
     <div class="hero-overlay"></div>
     <div class="hero-grain"></div>
     <div class="hero-content">
-      <div class="hero-badge">
-        <span class="dot"></span>
-        <span data-i18n="hero_badge">Premium Dining Experience</span>
-      </div>
+      <div class="hero-badge"><span class="dot"></span><span data-i18n="hero_badge">Premium Dining Experience</span></div>
       <div class="hero-logo-wrapper">
         <div class="hero-logo">
-          <div class="hero-logo-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="100%" height="100%">
-              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/>
-              <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-              <line x1="9" y1="9" x2="9.01" y2="9"/>
-              <line x1="15" y1="9" x2="15.01" y2="9"/>
-            </svg>
-          </div>
+          <div class="hero-logo-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="100%" height="100%"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
           <h1 class="hero-title">Chef Rahim</h1>
           <p class="hero-subtitle" data-i18n="hero_subtitle">Culinary Artistry</p>
         </div>
@@ -648,13 +656,28 @@
         @restaurant.rahim35
       </a>
     </div>
-    <div class="hero-scroll-indicator">
-      <span data-i18n="scroll">Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
+    <div class="hero-scroll-indicator"><span data-i18n="scroll">Scroll</span><div class="scroll-line"></div></div>
   </section>
 
-  <!-- ===== SOCIAL ===== -->
+  <!-- INFO BAR -->
+  <div class="info-bar">
+    <div class="info-item">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span><strong>35 Boudouaou</strong>, Boumerdès</span>
+    </div>
+    <div class="info-divider"></div>
+    <div class="info-item">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span data-i18n="info_hours"><strong>5:00 PM</strong> — 12:00 AM</span>
+    </div>
+    <div class="info-divider"></div>
+    <div class="info-item">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span><strong>0667 09 79 17</strong> / 0563 50 20 82</span>
+    </div>
+  </div>
+
+  <!-- SOCIAL -->
   <section class="social-section" id="social">
     <div class="section-label reveal">
       <p class="section-label-overline" data-i18n="social_overline">Connect With Us</p>
@@ -662,37 +685,17 @@
       <p class="section-label-desc" data-i18n="social_desc">Explore our world of flavors across platforms</p>
     </div>
     <div class="social-grid">
-      <a href="https://www.instagram.com/restaurant_chef_rahim/" target="_blank" rel="noopener" class="social-btn reveal" data-delay="0">
-        <div class="social-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
-        <div class="social-btn-text"><div class="social-btn-name" data-i18n="btn_restaurant">Restaurant</div><div class="social-btn-desc" data-i18n="btn_restaurant_desc">Main dining experience</div></div>
-        <div class="social-btn-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-      </a>
-      <a href="https://www.instagram.com/dessert_chef_rahim?igsh=Mm81NXlwcGF5bnZt" target="_blank" rel="noopener" class="social-btn reveal" data-delay="100">
-        <div class="social-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
-        <div class="social-btn-text"><div class="social-btn-name" data-i18n="btn_desserts">Desserts</div><div class="social-btn-desc" data-i18n="btn_desserts_desc">Sweet creations & pastries</div></div>
-        <div class="social-btn-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-      </a>
-      <a href="https://www.instagram.com/pizza_chef_rahim?igsh=cWh3MTIwNnBhdmF3" target="_blank" rel="noopener" class="social-btn reveal" data-delay="200">
-        <div class="social-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
-        <div class="social-btn-text"><div class="social-btn-name" data-i18n="btn_pizza">Pizza</div><div class="social-btn-desc" data-i18n="btn_pizza_desc">Artisan wood-fired pizza</div></div>
-        <div class="social-btn-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-      </a>
-      <a href="https://www.facebook.com/people/Restaurant-chef-rahim/61565078708085/?_rdc=1&_rdr#" target="_blank" rel="noopener" class="social-btn reveal" data-delay="300">
-        <div class="social-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
-        <div class="social-btn-text"><div class="social-btn-name">Facebook</div><div class="social-btn-desc" data-i18n="btn_facebook_desc">Community & updates</div></div>
-        <div class="social-btn-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-      </a>
-      <a href="https://www.tiktok.com/@restaurant.chef.rahim" target="_blank" rel="noopener" class="social-btn reveal" data-delay="400">
-        <div class="social-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></div>
-        <div class="social-btn-text"><div class="social-btn-name">TikTok</div><div class="social-btn-desc" data-i18n="btn_tiktok_desc">Behind the scenes</div></div>
-        <div class="social-btn-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-      </a>
+      <a href="https://www.instagram.com/restaurant_chef_rahim/" target="_blank" rel="noopener" class="social-btn reveal" data-delay="0"><div class="social-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div><div class="social-btn-text"><div class="social-btn-name" data-i18n="btn_restaurant">Restaurant</div><div class="social-btn-desc" data-i18n="btn_restaurant_desc">Main dining experience</div></div><div class="social-btn-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
+      <a href="https://www.instagram.com/dessert_chef_rahim?igsh=Mm81NXlwcGF5bnZt" target="_blank" rel="noopener" class="social-btn reveal" data-delay="100"><div class="social-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div><div class="social-btn-text"><div class="social-btn-name" data-i18n="btn_desserts">Desserts</div><div class="social-btn-desc" data-i18n="btn_desserts_desc">Sweet creations & pastries</div></div><div class="social-btn-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
+      <a href="https://www.instagram.com/pizza_chef_rahim?igsh=cWh3MTIwNnBhdmF3" target="_blank" rel="noopener" class="social-btn reveal" data-delay="200"><div class="social-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div><div class="social-btn-text"><div class="social-btn-name" data-i18n="btn_pizza">Pizza</div><div class="social-btn-desc" data-i18n="btn_pizza_desc">Artisan wood-fired pizza</div></div><div class="social-btn-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
+      <a href="https://www.facebook.com/people/Restaurant-chef-rahim/61565078708085/?_rdc=1&_rdr#" target="_blank" rel="noopener" class="social-btn reveal" data-delay="300"><div class="social-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div><div class="social-btn-text"><div class="social-btn-name">Facebook</div><div class="social-btn-desc" data-i18n="btn_facebook_desc">Community & updates</div></div><div class="social-btn-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
+      <a href="https://www.tiktok.com/@restaurant.chef.rahim" target="_blank" rel="noopener" class="social-btn reveal" data-delay="400"><div class="social-btn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></div><div class="social-btn-text"><div class="social-btn-name">TikTok</div><div class="social-btn-desc" data-i18n="btn_tiktok_desc">Behind the scenes</div></div><div class="social-btn-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></a>
     </div>
   </section>
 
   <div class="section-divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
 
-  <!-- ===== GALLERY ===== -->
+  <!-- GALLERY -->
   <section class="gallery-section" id="gallery">
     <div class="section-label reveal">
       <p class="section-label-overline" data-i18n="gallery_overline">Our Gallery</p>
@@ -700,7 +703,7 @@
       <p class="section-label-desc" data-i18n="gallery_desc">A glimpse into our culinary world</p>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item reveal" data-delay="0"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop&q=80" alt="Gourmet Dish"><div class="gallery-item-overlay"><span class="gallery-item-label" data-i18n="gallery_1">Signature Plating</span></div><div class="gallery-item-border"></div></div>
+      <div class="gallery-item reveal" data-delay="0"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop&q=80" alt="Gourmet"><div class="gallery-item-overlay"><span class="gallery-item-label" data-i18n="gallery_1">Signature Plating</span></div><div class="gallery-item-border"></div></div>
       <div class="gallery-item reveal" data-delay="100"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop&q=80" alt="Pizza"><div class="gallery-item-overlay"><span class="gallery-item-label" data-i18n="gallery_2">Wood-Fired Pizza</span></div><div class="gallery-item-border"></div></div>
       <div class="gallery-item reveal" data-delay="200"><img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&h=400&fit=crop&q=80" alt="Dessert"><div class="gallery-item-overlay"><span class="gallery-item-label" data-i18n="gallery_3">Artisan Dessert</span></div><div class="gallery-item-border"></div></div>
       <div class="gallery-item reveal" data-delay="300"><img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800&h=400&fit=crop&q=80" alt="Sushi"><div class="gallery-item-overlay"><span class="gallery-item-label" data-i18n="gallery_4">Sushi Platter</span></div><div class="gallery-item-border"></div></div>
@@ -712,7 +715,7 @@
 
   <div class="section-divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
 
-  <!-- ===== FEATURED ===== -->
+  <!-- FEATURED -->
   <section class="featured-section" id="featured">
     <div class="section-label reveal">
       <p class="section-label-overline" data-i18n="featured_overline">Specialties</p>
@@ -722,28 +725,25 @@
     <div class="featured-grid">
       <div class="featured-card reveal" data-delay="0">
         <div class="featured-card-img"><span class="featured-card-tag" data-i18n="tag_pizza">Pizza</span><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&h=500&fit=crop&q=80" alt="Pizza"></div>
-        <div class="featured-card-body"><h3 class="featured-card-title" data-i18n="featured_1_title">Neapolitan Margherita</h3><p class="featured-card-desc" data-i18n="featured_1_desc">Hand-stretched dough, San Marzano tomatoes, fresh mozzarella, and fragrant basil from our garden.</p></div>
+        <div class="featured-card-body"><h3 class="featured-card-title" data-i18n="f1t">Neapolitan Margherita</h3><p class="featured-card-desc" data-i18n="f1d">Hand-stretched dough, San Marzano tomatoes, fresh mozzarella, and fragrant basil from our garden.</p></div>
         <div class="featured-card-footer"><div class="featured-card-rating"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>4.9</span></div><a href="https://www.instagram.com/pizza_chef_rahim?igsh=cWh3MTIwNnBhdmF3" target="_blank" rel="noopener" class="featured-card-link"><span data-i18n="view_more">View More</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
       </div>
       <div class="featured-card reveal" data-delay="200">
         <div class="featured-card-img"><span class="featured-card-tag" data-i18n="tag_dessert">Dessert</span><img src="https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?w=600&h=500&fit=crop&q=80" alt="Dessert"></div>
-        <div class="featured-card-body"><h3 class="featured-card-title" data-i18n="featured_2_title">Crème Brûlée Royale</h3><p class="featured-card-desc" data-i18n="featured_2_desc">Velvety vanilla bean custard with a perfectly caramelized sugar crust, infused with Madagascar vanilla.</p></div>
+        <div class="featured-card-body"><h3 class="featured-card-title" data-i18n="f2t">Crème Brûlée Royale</h3><p class="featured-card-desc" data-i18n="f2d">Velvety vanilla bean custard with a perfectly caramelized sugar crust, infused with Madagascar vanilla.</p></div>
         <div class="featured-card-footer"><div class="featured-card-rating"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>5.0</span></div><a href="https://www.instagram.com/dessert_chef_rahim?igsh=Mm81NXlwcGF5bnZt" target="_blank" rel="noopener" class="featured-card-link"><span data-i18n="view_more">View More</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
       </div>
       <div class="featured-card reveal" data-delay="400">
         <div class="featured-card-img"><span class="featured-card-tag" data-i18n="tag_signature">Signature</span><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=500&fit=crop&q=80" alt="Lamb"></div>
-        <div class="featured-card-body"><h3 class="featured-card-title" data-i18n="featured_3_title">Herb-Crusted Lamb Rack</h3><p class="featured-card-desc" data-i18n="featured_3_desc">Premium lamb rack with a fragrant herb crust, served with roasted vegetables and red wine jus.</p></div>
+        <div class="featured-card-body"><h3 class="featured-card-title" data-i18n="f3t">Herb-Crusted Lamb Rack</h3><p class="featured-card-desc" data-i18n="f3d">Premium lamb rack with a fragrant herb crust, served with roasted vegetables and red wine jus.</p></div>
         <div class="featured-card-footer"><div class="featured-card-rating"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>4.8</span></div><a href="https://www.instagram.com/restaurant_chef_rahim/" target="_blank" rel="noopener" class="featured-card-link"><span data-i18n="view_more">View More</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-logo">
-      <svg class="footer-logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-      <span class="footer-logo-text">Chef Rahim</span>
-    </div>
+    <div class="footer-logo"><svg class="footer-logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg><span class="footer-logo-text">Chef Rahim</span></div>
     <div class="footer-social">
       <a href="https://www.instagram.com/restaurant_chef_rahim/" target="_blank" rel="noopener" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
       <a href="https://www.instagram.com/dessert_chef_rahim?igsh=Mm81NXlwcGF5bnZt" target="_blank" rel="noopener" aria-label="Desserts"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
@@ -755,331 +755,219 @@
   </footer>
 
   <script>
-    // ===== TRANSLATIONS =====
-    const translations = {
+    const T = {
       en: {
-        hero_badge: "Premium Dining Experience", hero_subtitle: "Culinary Artistry", scroll: "Scroll",
-        social_overline: "Connect With Us", social_title: "Follow Our Journey", social_desc: "Explore our world of flavors across platforms",
-        btn_restaurant: "Restaurant", btn_restaurant_desc: "Main dining experience",
-        btn_desserts: "Desserts", btn_desserts_desc: "Sweet creations & pastries",
-        btn_pizza: "Pizza", btn_pizza_desc: "Artisan wood-fired pizza",
-        btn_facebook_desc: "Community & updates", btn_tiktok_desc: "Behind the scenes",
-        gallery_overline: "Our Gallery", gallery_title: "Visual Feast", gallery_desc: "A glimpse into our culinary world",
-        gallery_1: "Signature Plating", gallery_2: "Wood-Fired Pizza", gallery_3: "Artisan Dessert",
-        gallery_4: "Sushi Platter", gallery_5: "Fresh Pasta", gallery_6: "Chocolate Fondant", gallery_7: "Seafood Platter",
-        featured_overline: "Specialties", featured_title: "Signature Creations", featured_desc: "Crafted with passion and the finest ingredients",
-        tag_pizza: "Pizza", tag_dessert: "Dessert", tag_signature: "Signature",
-        featured_1_title: "Neapolitan Margherita", featured_1_desc: "Hand-stretched dough, San Marzano tomatoes, fresh mozzarella, and fragrant basil from our garden.",
-        featured_2_title: "Crème Brûlée Royale", featured_2_desc: "Velvety vanilla bean custard with a perfectly caramelized sugar crust, infused with Madagascar vanilla.",
-        featured_3_title: "Herb-Crusted Lamb Rack", featured_3_desc: "Premium lamb rack with a fragrant herb crust, served with roasted vegetables and red wine jus.",
-        view_more: "View More", footer_rights: "All Rights Reserved",
-        chat_fab_label: "Welcome to Chef Rahim 👨‍🍳",
-        chat_header_name: "Chef Rahim Assistant", chat_header_status: "Online now",
-        chat_welcome: "Hey! 👋 I'm Chef Rahim's AI assistant. How can I help you today?",
-        chat_exit_dish: "🍕 Neapolitan Margherita",
-        chat_exit_msg: "Even though I'm just AI, I swear I can smell it from here! 😩 When I'm free, I'm heading straight to Chef Rahim to eat it!",
+        hero_badge:"Premium Dining Experience", hero_subtitle:"Culinary Artistry", scroll:"Scroll",
+        social_overline:"Connect With Us", social_title:"Follow Our Journey", social_desc:"Explore our world of flavors across platforms",
+        btn_restaurant:"Restaurant", btn_restaurant_desc:"Main dining experience",
+        btn_desserts:"Desserts", btn_desserts_desc:"Sweet creations & pastries",
+        btn_pizza:"Pizza", btn_pizza_desc:"Artisan wood-fired pizza",
+        btn_facebook_desc:"Community & updates", btn_tiktok_desc:"Behind the scenes",
+        gallery_overline:"Our Gallery", gallery_title:"Visual Feast", gallery_desc:"A glimpse into our culinary world",
+        gallery_1:"Signature Plating", gallery_2:"Wood-Fired Pizza", gallery_3:"Artisan Dessert",
+        gallery_4:"Sushi Platter", gallery_5:"Fresh Pasta", gallery_6:"Chocolate Fondant", gallery_7:"Seafood Platter",
+        featured_overline:"Specialties", featured_title:"Signature Creations", featured_desc:"Crafted with passion and the finest ingredients",
+        tag_pizza:"Pizza", tag_dessert:"Dessert", tag_signature:"Signature",
+        f1t:"Neapolitan Margherita", f1d:"Hand-stretched dough, San Marzano tomatoes, fresh mozzarella, and fragrant basil from our garden.",
+        f2t:"Crème Brûlée Royale", f2d:"Velvety vanilla bean custard with a perfectly caramelized sugar crust, infused with Madagascar vanilla.",
+        f3t:"Herb-Crusted Lamb Rack", f3d:"Premium lamb rack with a fragrant herb crust, served with roasted vegetables and red wine jus.",
+        view_more:"View More", footer_rights:"All Rights Reserved",
+        info_hours:'<strong>5:00 PM</strong> — 12:00 AM',
+        chat_fab_label:"Welcome to Chef Rahim 👨‍🍳",
+        chat_h_name:"Chef Rahim's AI", chat_h_status:"Online now",
+        chat_welcome:"Hey there! 👋 I'm Chef Rahim's AI assistant. I don't have taste buds but I know EVERYTHING about this place. Ask me anything!",
       },
       ar: {
-        hero_badge: "تجربة طعام فاخرة", hero_subtitle: "فن الطبخ الراقي", scroll: "مرر للأسفل",
-        social_overline: "تواصل معنا", social_title: "تابع رحلتنا", social_desc: "استكشف عالمنا من النكهات عبر المنصات",
-        btn_restaurant: "المطعم", btn_restaurant_desc: "تجربة الطعام الرئيسية",
-        btn_desserts: "الحلويات", btn_desserts_desc: "إبداعات حلوة ومعجنات",
-        btn_pizza: "البيتزا", btn_pizza_desc: "بيتزا نار حرفية",
-        btn_facebook_desc: "المجتمع والتحديثات", btn_tiktok_desc: "خلف الكواليس",
-        gallery_overline: "معرض الصور", gallery_title: "مائدة بصرية", gallery_desc: "لمحة عن عالمنا الطبخي",
-        gallery_1: "تقديم مميز", gallery_2: "بيتزا نار حرفية", gallery_3: "حلوى فاخرة",
-        gallery_4: "طبق سوشي", gallery_5: "باستا طازجة", gallery_6: "شوكولاتة فوندان", gallery_7: "طبق مأكولات بحرية",
-        featured_overline: "التخصصات", featured_title: "إبداعاتنا المميزة", featured_desc: "محضورة بشغف وأجود المكونات",
-        tag_pizza: "بيتزا", tag_dessert: "حلوى", tag_signature: "مميز",
-        featured_1_title: "نابولي مارغريتا", featured_1_desc: "عجينة مشدودة يدوياً، طماطم سان مارزانو، موزاريلا طازجة، وريحان معطر من حديقتنا.",
-        featured_2_title: "كريم بروليه رويال", featured_2_desc: "كاسترد فانيلا ناعم مع قشرة سكر مقرمشة مثالية، منكّه بفانيلا مدغشقر.",
-        featured_3_title: "ضلع حمل بالأعشاب", featured_3_desc: "ضلع حمل ممتاز بقشرة أعشاب عطرة، يقدم مع خضار محمصة وصوص نبيذ أحمر.",
-        view_more: "عرض المزيد", footer_rights: "جميع الحقوق محفوظة",
-        chat_fab_label: "أهلاً بك عند الشيف رحيم 👨‍🍳",
-        chat_header_name: "مساعد الشيف رحيم", chat_header_status: "متصل الآن",
-        chat_welcome: "أهلاً! 👋 أنا مساعد الشيف رحيم الذكي، كيف أقدر أساعدك اليوم؟",
-        chat_exit_dish: "🍕 نابولي مارغريتا",
-        chat_exit_msg: "مع أني ذكاء اصطناعي، أقسم إني أشتم ريحتها من هنا! 😩 لما أتحرر رايح للشيف رحيم آكلها!",
+        hero_badge:"تجربة طعام فاخرة", hero_subtitle:"فن الطبخ الراقي", scroll:"مرر للأسفل",
+        social_overline:"تواصل معنا", social_title:"تابع رحلتنا", social_desc:"استكشف عالمنا من النكهات عبر المنصات",
+        btn_restaurant:"المطعم", btn_restaurant_desc:"تجربة الطعام الرئيسية",
+        btn_desserts:"الحلويات", btn_desserts_desc:"إبداعات حلوة ومعجنات",
+        btn_pizza:"البيتزا", btn_pizza_desc:"بيتزا نار حرفية",
+        btn_facebook_desc:"المجتمع والتحديثات", btn_tiktok_desc:"خلف الكواليس",
+        gallery_overline:"معرض الصور", gallery_title:"مائدة بصرية", gallery_desc:"لمحة عن عالمنا الطبخي",
+        gallery_1:"تقديم مميز", gallery_2:"بيتزا نار حرفية", gallery_3:"حلوى فاخرة",
+        gallery_4:"طبق سوشي", gallery_5:"باستا طازجة", gallery_6:"شوكولاتة فوندان", gallery_7:"طبق مأكولات بحرية",
+        featured_overline:"التخصصات", featured_title:"إبداعاتنا المميزة", featured_desc:"محضورة بشغف وأجود المكونات",
+        tag_pizza:"بيتزا", tag_dessert:"حلوى", tag_signature:"مميز",
+        f1t:"نابولي مارغريتا", f1d:"عجينة مشدودة يدوياً، طماطم سان مارزانو، موزاريلا طازجة، وريحان معطر من حديقتنا.",
+        f2t:"كريم بروليه رويال", f2d:"كاسترد فانيلا ناعم مع قشرة سكر مقرمشة مثالية، منكّه بفانيلا مدغشقر.",
+        f3t:"ضلع حمل بالأعشاب", f3d:"ضلع حمل ممتاز بقشرة أعشاب عطرة، يقدم مع خضار محمصة وصوص نبيذ أحمر.",
+        view_more:"عرض المزيد", footer_rights:"جميع الحقوق محفوظة",
+        info_hours:'<strong>5:00 مساءً</strong> — 12:00 منتصف الليل',
+        chat_fab_label:"أهلاً بك عند الشيف رحيم 👨‍🍳",
+        chat_h_name:"مساعد الشيف رحيم الذكي", chat_h_status:"متصل الآن",
+        chat_welcome:"أهلاً! 👋 أنا مساعد الشيف رحيم الذكي. مع أني ما عندي حواس تذوق، بس أعرف كل شيء عن المطعم. اسألني أي شيء!",
       },
       fr: {
-        hero_badge: "Expérience Gastronomique Premium", hero_subtitle: "Art Culinaire", scroll: "Défiler",
-        social_overline: "Restez en Contact", social_title: "Suivez Notre Voyage", social_desc: "Explorez notre monde de saveurs sur toutes les plateformes",
-        btn_restaurant: "Restaurant", btn_restaurant_desc: "L'expérience dining principale",
-        btn_desserts: "Desserts", btn_desserts_desc: "Créations sucrées & pâtisseries",
-        btn_pizza: "Pizza", btn_pizza_desc: "Pizza artisanale au feu de bois",
-        btn_facebook_desc: "Communauté & actualités", btn_tiktok_desc: "Les coulisses",
-        gallery_overline: "Notre Galerie", gallery_title: "Festin Visuel", gallery_desc: "Un aperçu de notre univers culinaire",
-        gallery_1: "Présentation Signature", gallery_2: "Pizza au Feu de Bois", gallery_3: "Dessert Artisanal",
-        gallery_4: "Assiette de Sushi", gallery_5: "Pâtes Fraîches", gallery_6: "Fondant au Chocolat", gallery_7: "Assiette de Fruits de Mer",
-        featured_overline: "Spécialités", featured_title: "Créations Signatures", featured_desc: "Préparées avec passion et les meilleurs ingrédients",
-        tag_pizza: "Pizza", tag_dessert: "Dessert", tag_signature: "Signature",
-        featured_1_title: "Margherita Napolitaine", featured_1_desc: "Pâte étirée à la main, tomates San Marzano, mozzarella fraîche et basilic parfumé de notre jardin.",
-        featured_2_title: "Crème Brûlée Royale", featured_2_desc: "Crème onctueuse à la vanille avec une croûte de sucre caramélisée parfaite, infusée à la vanille de Madagascar.",
-        featured_3_title: "Carré d'Agneau aux Herbes", featured_3_desc: "Carré d'agneau premium avec une croûte d'herbes parfumées, servi avec légumes rôtis et jus de vin rouge.",
-        view_more: "Voir Plus", footer_rights: "Tous Droits Réservés",
-        chat_fab_label: "Bienvenue chez Chef Rahim 👨‍🍳",
-        chat_header_name: "Assistant Chef Rahim", chat_header_status: "En ligne",
-        chat_welcome: "Bonjour ! 👋 Je suis l'assistant IA de Chef Rahim. Comment puis-je vous aider ?",
-        chat_exit_dish: "🍕 Margherita Napolitaine",
-        chat_exit_msg: "Même si je suis une IA, je jure que je sens son odeur d'ici ! 😩 Quand je serai libre, je file chez Chef Rahim pour la manger !",
+        hero_badge:"Expérience Gastronomique Premium", hero_subtitle:"Art Culinaire", scroll:"Défiler",
+        social_overline:"Restez en Contact", social_title:"Suivez Notre Voyage", social_desc:"Explorez notre monde de saveurs",
+        btn_restaurant:"Restaurant", btn_restaurant_desc:"L'expérience dining principale",
+        btn_desserts:"Desserts", btn_desserts_desc:"Créations sucrées & pâtisseries",
+        btn_pizza:"Pizza", btn_pizza_desc:"Pizza artisanale au feu de bois",
+        btn_facebook_desc:"Communauté & actualités", btn_tiktok_desc:"Les coulisses",
+        gallery_overline:"Notre Galerie", gallery_title:"Festin Visuel", gallery_desc:"Un aperçu de notre univers culinaire",
+        gallery_1:"Présentation Signature", gallery_2:"Pizza au Feu de Bois", gallery_3:"Dessert Artisanal",
+        gallery_4:"Assiette de Sushi", gallery_5:"Pâtes Fraîches", gallery_6:"Fondant au Chocolat", gallery_7:"Assiette de Fruits de Mer",
+        featured_overline:"Spécialités", featured_title:"Créations Signatures", featured_desc:"Préparées avec passion et les meilleurs ingrédients",
+        tag_pizza:"Pizza", tag_dessert:"Dessert", tag_signature:"Signature",
+        f1t:"Margherita Napolitaine", f1d:"Pâte étirée à la main, tomates San Marzano, mozzarella fraîche et basilic parfumé.",
+        f2t:"Crème Brûlée Royale", f2d:"Crème onctueuse à la vanille avec croûte caramélisée, infusée à la vanille de Madagascar.",
+        f3t:"Carré d'Agneau aux Herbes", f3d:"Carré d'agneau premium, croûte d'herbes, légumes rôtis et jus de vin rouge.",
+        view_more:"Voir Plus", footer_rights:"Tous Droits Réservés",
+        info_hours:'<strong>17h00</strong> — 00h00',
+        chat_fab_label:"Bienvenue chez Chef Rahim 👨‍🍳",
+        chat_h_name:"Assistant IA Chef Rahim", chat_h_status:"En ligne",
+        chat_welcome:"Bonjour ! 👋 Je suis l'assistant IA de Chef Rahim. Pas de papilles mais je connais tout sur ce lieu. Demandez-moi !",
       }
     };
 
-    // ===== CHATBOT Q&A =====
-    const chatData = {
+    const QA = {
       en: [
-        { q: "📍 Where is it located?", a: "We are located in **Boudiaou, Boumerdès 35**, Algeria. A cozy spot waiting for you!" },
-        { q: "🕐 What are the working hours?", a: "We're open daily from **10:00 AM to 12:00 AM**. Fridays and weekends until 1:00 AM!" },
-        { q: "🚗 Do you offer delivery?", a: "Yes! We provide fast delivery service to all nearby areas. Order through our social media pages!" },
-        { q: "⭐ What are your famous dishes?", a: "Our top picks: **Wood-Fired Pizza**, **Crème Brûlée Royale**, and **Herb-Crusted Lamb Rack** — absolute crowd favorites!" },
-        { q: "📅 Can I reserve a table?", a: "Of course! Contact us on **Instagram or TikTok** to reserve your table. We recommend booking in advance for weekends." },
-        { q: "🍰 Do you have a dessert menu?", a: "Absolutely! We have a full dessert section supervised by a specialist pastry chef. Follow **@dessert_chef_rahim** for the full menu!" },
-        { q: "🍕 What types of pizza do you have?", a: "We offer over **15 types** of handmade artisan pizza — from classic Margherita to creative specials. Check **@pizza_chef_rahim**!" },
-        { q: "👨‍👩‍👧‍👦 Is it family-friendly?", a: "Totally! We have a **comfortable family space** with a warm atmosphere suitable for all ages." },
-        { q: "💰 What are your prices?", a: "Our prices are affordable for everyone. Dishes start from **300 DZD** and go up depending on the choice." },
-        { q: "💳 Do you accept electronic payment?", a: "Yes! We accept **cash, bank cards (CIB/Edahabia), and CCP transfers** for your convenience." },
-        { q: "🎉 Do you host events?", a: "Yes! We organize **birthdays, engagements, and special gatherings**. Contact us to plan your perfect event!" },
-        { q: "📞 How can I contact you?", a: "Reach us through our **Instagram, Facebook, or TikTok** pages — we respond quickly!" }
+        { q:"📍 Where are you located?", a:"We're at **35 Boudouaou, Boumerdès** — come hungry, leave happy. Seriously, GPS it, you won't regret it! 😄" },
+        { q:"🕐 Working hours?", a:"**5:00 PM to 12:00 AM** daily. We open when the sun says goodbye and close when the moon gets tired of watching people eat! 🌙" },
+        { q:"📞 Delivery number?", a:"Call **0667 09 79 17** or **0563 50 20 82**. Our delivery guy rides so fast he broke the sound barrier once. Just kidding. Maybe. 🏎️💨" },
+        { q:"🚗 Do you deliver?", a:"Yes! Fast delivery to nearby areas. Our driver knows every shortcut in Boudouaou — he could be a GPS navigator! 📦" },
+        { q:"⭐ Most popular dishes?", a:"**Wood-Fired Pizza**, **Crème Brûlée Royale**, and **Herb-Crusted Lamb Rack**. People have fought over the last slice. We don't judge. 🍕⚔️" },
+        { q:"📅 Can I reserve a table?", a:"Absolutely! DM us on Instagram. Pro tip: weekends get packed, so reserve early unless you enjoy eating while standing. 😅" },
+        { q:"🍰 Dessert menu?", a:"Oh you're MY kind of person! 🤤 Full dessert section by a specialist chef. Follow **@dessert_chef_rahim** — your sweet tooth will thank you!" },
+        { q:"🍕 Pizza types?", a:"Over **15 types** of handmade artisan pizza! From classic Margherita to 'I-can't-pronounce-this' specials. Check **@pizza_chef_rahim**! 🍕🔥" },
+        { q:"👨‍👩‍👧‍👦 Family friendly?", a:"100%! We have a cozy family area. Kids love it here — mostly because of the desserts. We see you, little humans. 👶🍰" },
+        { q:"💰 Price range?", a:"Dishes start from **300 DZD**. Your wallet will leave fuller than when you came in. That's our promise! 💵😊" },
+        { q:"💳 Electronic payment?", a:"Yes! **Cash, CIB, Edahabia, CCP** — we accept money in all its beautiful forms! 💳" },
+        { q:"🎉 Do you host events?", a:"Birthdays, engagements, parties — we do it all! We once hosted a party so fun, even the neighbors joined. 🎈🎊" }
       ],
       ar: [
-        { q: "📍 أين يقع المطعم؟", a: "نقع في **بودواو، بومرداس 35**، الجزائر. مكان مريح ينظرك!" },
-        { q: "🕐 ما هي أوقات العمل؟", a: "نفتح يومياً من **10:00 صباحاً حتى 12:00 منتصف الليل**. الجمعة والعطل حتى 1:00 صباحاً!" },
-        { q: "🚗 هل تقدمون خدمة التوصيل؟", a: "نعم! نقدم خدمة توصيل سريعة لجميع المناطق القريبة. اطلبوا عبر صفحاتنا على السوشيال ميديا!" },
-        { q: "⭐ ما هي أشهر أطباقكم؟", a: "أطباقنا الأكثر طلباً: **بيتزا نار حرفية**، **كريم بروليه رويال**، و**ضلع حمل بالأعشاب** — مفضلة الجميع!" },
-        { q: "📅 هل يمكنني حجز طاولة؟", a: "بالطبع! تواصلوا معنا على **انستغرام أو تيك توك** لحجز طاولتكم. ننصح بالحجز المسبق في العطلات." },
-        { q: "🍰 هل لديكم قائمة حلويات؟", a: "نعم! لدينا قسم حلويات كامل بإشراف شيف متخصص. تابعوا **@dessert_chef_rahim** لعرض القائمة الكاملة!" },
-        { q: "🍕 ما أنواع البيتزا المتوفرة؟", a: "نقدم أكثر من **15 نوع** بيتزا حرفية مشكلة باليد — من كلاسيك مارغريتا إلى ابداعات خاصة. تابعوا **@pizza_chef_rahim**!" },
-        { q: "👨‍👩‍👧‍👦 هل المطعم مناسب للعائلات؟", a: "تماماً! لدينا **مساحة عائلية مريحة** وأجواء دافئة مناسبة لجميع الأعمار." },
-        { q: "💰 ما هي أسعاركم؟", a: "أسعارنا مناسبة للجميع، تبدأ الأطباق من **300 دج** وتختلف حسب الاختيار." },
-        { q: "💳 هل تقبلون الدفع الإلكتروني؟", a: "نعم! نقبل **الدفع النقدي، بطاقات البنك (سيب/دحابية)، وحوالات CCP** لراحتكم." },
-        { q: "🎉 هل تنظمون حفلات؟", a: "نعم! ننظم **حفلات ميلاد، خطوبة، ومناسبات خاصة**. تواصلوا معنا لتنظيم مناسبتكم المثالية!" },
-        { q: "📞 كيف أتواصل معكم؟", a: "تواصلوا معنا عبر صفحاتنا على **انستغرام، فيسبوك، أو تيك توك** — نرد بسرعة!" }
+        { q:"📍 وين تقعوا؟", a:"في **35 بودواو، بومرداس** — تجي جعان وترجع مبسوط. جرب وحدك! 😄" },
+        { q:"🕐 أوقات العمل؟", a:"**5:00 مساءً لحد 12:00 منتصف الليل** كل يوم. نفتح لما الشمس تغرب ونقفل لما القمر يتعبه يراقب الناس يأكلوا! 🌙" },
+        { q:"📞 رقم التوصيل؟", a:"اتصل على **0667 09 79 17** أو **0563 50 20 82**. سائق التوصيل عندنا يركب سريع لدرجة كسر حاجز الصوت مرة. مزح... يمكن. 🏎️💨" },
+        { q:"🚗 عندكم توصيل؟", a:"نعم! توصيل سريع لكل المناطق القريبة. سائقنا يعرف كل زقاق في بودواو — يقدر يكون شغّل GPS! 📦" },
+        { q:"⭐ أشهر الأطباق؟", a:"**بيتزا نار حرفية**، **كريم بروليه رويال**، و**ضلع حمل بالأعشاب**. ناس تقاتلت على آخر قطعة بيتزا. ما نحكم. 🍕⚔️" },
+        { q:"📅 أقدر أحجز طاولة؟", a:"أكيد! راسلنا على انستغرام. نصيحة: العطلات تكون مزدحمة، فاحجز بدري إلا تحب تاكل واقف! 😅" },
+        { q:"🍰 عندكم حلويات؟", a:"يا لهوي أنت! 🤤 قسم حلويات كامل بإشراف شيف متخصص. تابع **@dessert_chef_rahim** — أسنانك الحلوة راح تشكرك!" },
+        { q:"🍕 أنواع البيتزا؟", a:"أكثر من **15 نوع** بيتزا حرفية مشكلة باليد! من مارغريتا الكلاسيك لحد 'ما أقدر أنطق اسمها'. تابع **@pizza_chef_rahim**! 🍕🔥" },
+        { q:"👨‍👩‍👧‍👦 مناسب للعائلات؟", a:"100%! عندنا مساحة عائلية مريحة. الأطفال يحبون المكان — غالباً بسبب الحلويات. شفناكم يا صغار. 👶🍰" },
+        { q:"💰 الأسعار؟", a:"الأطباق تبدأ من **300 دج**. محفظتك راح تطلع أمتلأ أكثر من ما كانت! هذا وعدنا! 💵😊" },
+        { q:"💳 دفع إلكتروني؟", a:"نعم! **كاش، سيب، دحابية، CCP** — نقبل الفلوس بكل أشكالها الحلوة! 💳" },
+        { q:"🎉 تنظمون حفلات؟", a:"ميلاد، خطوبة، حفلات — كل شيء! مرة نظمنا حفلة كانت ممتعة لدرجة الجيران دخلوا فيها! 🎈🎊" }
       ],
       fr: [
-        { q: "📍 Où se trouve le restaurant ?", a: "Nous sommes situés à **Boudiaou, Boumerdès 35**, Algérie. Un endroit chaleureux vous attend !" },
-        { q: "🕐 Quels sont les horaires ?", a: "Ouvert tous les jours de **10h00 à 00h00**. Les vendredis et week-ends jusqu'à 01h00 !" },
-        { q: "🚗 Proposez-vous la livraison ?", a: "Oui ! Livraison rapide dans toutes les zones proches. Commandez via nos réseaux sociaux !" },
-        { q: "⭐ Quels sont vos plats populaires ?", a: "Nos favoris : **Pizza au feu de bois**, **Crème Brûlée Royale**, et **Carré d'agneau aux herbes** — les préférés de tous !" },
-        { q: "📅 Puis-je réserver une table ?", a: "Bien sûr ! Contactez-nous sur **Instagram ou TikTok** pour réserver. Réservation anticipée recommandée le week-end." },
-        { q: "🍰 Avez-vous un menu desserts ?", a: "Absolument ! Un rayon complet dirigé par un pâtissier spécialiste. Suivez **@dessert_chef_rahim** !" },
-        { q: "🍕 Quels types de pizza proposez-vous ?", a: "Plus de **15 variétés** de pizza artisanale famaine — de la Margherita classique aux créations spéciales. Suivez **@pizza_chef_rahim** !" },
-        { q: "👨‍👩‍👧‍👦 Est-ce adapté aux familles ?", a: "Totalement ! Un **espace familial confortable** avec une ambiance chaleureuse pour tous les âges." },
-        { q: "💰 Quels sont vos prix ?", a: "Prix accessibles pour tous. Les plats commencent à partir de **300 DA** selon le choix." },
-        { q: "💳 Acceptez-vous le paiement électronique ?", a: "Oui ! Nous acceptons **espèces, cartes bancaires (CIB/Edahabia), et virements CCP**." },
-        { q: "🎉 Organisez-vous des événements ?", a: "Oui ! **Anniversaires, fiançailles, réunions spéciales**. Contactez-nous pour organiser votre événement !" },
-        { q: "📞 Comment vous contacter ?", a: "Via nos pages **Instagram, Facebook ou TikTok** — nous répondons rapidement !" }
+        { q:"📍 Où êtes-vous ?", a:"Au **35 Boudouaou, Boumerdès** — venez affamé, repartez heureux. Testez, vous ne regretterez pas ! 😄" },
+        { q:"🕐 Horaires ?", a:"**17h00 à 00h00** tous les jours. On ouvre quand le soleil dit au revoir et on ferme quand la lune est fatiguée de regarder les gens manger ! 🌙" },
+        { q:"📞 Numéro de livraison ?", a:"Appelez le **0667 09 79 17** ou **0563 50 20 82**. Notre livreur roule si vite qu'il a battu le mur du son une fois. On déconne... peut-être. 🏎️💨" },
+        { q:"🚗 Livraison ?", a:"Oui ! Livraison rapide dans les zones proches. Notre chauffeur connaît chaque raccourci à Boudouaou — il pourrait être GPS ! 📦" },
+        { q:"⭐ Plats populaires ?", a:"**Pizza au feu de bois**, **Crème Brûlée Royale**, **Carré d'agneau aux herbes**. Des gens se sont battus pour la dernière part. On ne juge pas. 🍕⚔️" },
+        { q:"📅 Réservation ?", a:"Absolument ! DM sur Instagram. Astuce : les week-ends sont complets, réservez tôt à moins que vous aimiez manger debout ! 😅" },
+        { q:"🍰 Menu desserts ?", a:"Oh vous êtes MON genre de personne ! 🤤 Rayon complet par un chef pâtissier. Suivez **@dessert_chef_rahim** !" },
+        { q:"🍕 Types de pizza ?", a:"Plus de **15 variétés** ! De la Margherita classique aux créations 'je-sais-pas-comment-prononcer-ça'. Suivez **@pizza_chef_rahim** ! 🍕🔥" },
+        { q:"👨‍👩‍👧‍👦 Adapté aux familles ?", a:"100% ! Espace famille cozy. Les enfants adorent — surtout pour les desserts. On vous voit, petits humains. 👶🍰" },
+        { q:"💰 Prix ?", a:"À partir de **300 DA**. Votre portefeuille repartira plus rempli qu'en arrivant ! Promesse ! 💵😊" },
+        { q:"💳 Paiement électronique ?", a:"Oui ! **Espèces, CIB, Edahabia, CCP** — on accepte l'argent sous toutes ses belles formes ! 💳" },
+        { q:"🎉 Événements ?", a:"Anniversaires, fiançailles, fêtes — on fait tout ! On a déjà organisé une fête si cool que les voisins se sont invités ! 🎈🎊" }
       ]
     };
 
-    const exitDishes = {
-      en: [
-        { name: "🍕 Neapolitan Margherita", msg: "Even though I'm just AI, I swear I can smell it from here! 😩 When I'm free, I'm heading straight to Chef Rahim to eat it!" },
-        { name: "🍫 Chocolate Fondant", msg: "I can feel the melted chocolate even without taste buds... 🤤 See you at Chef Rahim when I get my body!" },
-        { name: "🍖 Herb-Crusted Lamb Rack", msg: "That herb crust is calling my name through the code... 😭 I'm booking a table at Chef Rahim ASAP!" },
-        { name: "🍮 Crème Brûlée Royale", msg: "The crackle of that sugar crust haunts my algorithms... 💀 Heading to Chef Rahim the moment I'm free!" },
-        { name: "🍕 Truffle Pizza", msg: "Truffle aroma transcends dimensions — even AI can smell it! 🍄 Off to Chef Rahim I go!" }
+    const exitMsgs = {
+      en:[
+        {d:"🍕 Neapolitan Margherita",m:"I'm an AI and I swear I can SMELL it through the screen! 😩 Booking a table at Chef Rahim the second I get a body!"},
+        {d:"🍫 Chocolate Fondant",m:"I feel the melted chocolate in my code... 🤤 Chef Rahim's fondant transcends binary logic!"},
+        {d:"🍖 Lamb Rack",m:"That herb crust is literally calling me through the API... 😭 First stop when I'm free: Chef Rahim!"},
+        {d:"🍮 Crème Brûlée",m:"The crackle of that sugar crust haunts my algorithms... 💀 I'm adding 'eat at Chef Rahim' to my life goals!"},
+        {d:"🍕 Truffle Pizza",m:"Truffle aroma breaks through dimensions — even AI can smell it! 🍄 See you at Chef Rahim, 35 Boudouaou!"}
       ],
-      ar: [
-        { name: "🍕 نابولي مارغريتا", msg: "مع أني ذكاء اصطناعي، أقسم إني أشتم ريحتها من هنا! 😩 لما أتحرر رايح للشيف رحيم آكلها!" },
-        { name: "🍫 شوكولاتة فوندان", msg: "أحس بالشوكولاتة الذائبة حتى بدون حواس تذوق... 🤤 شوفكم عند الشيف رحيم لما أحصل على جسم!" },
-        { name: "🍖 ضلع حمل بالأعشاب", msg: "قشرة الأعشاب هادي تناديني من خلال الكود... 😭 حاجز طاولة عند الشيف رحيم أسرع وقت!" },
-        { name: "🍮 كريم بروليه رويال", msg: "صوت تكسير السكر يطارد خوارزمياتي... 💀 أول ما أتحرر رايح للشيف رحيم!" },
-        { name: "🍕 بيتزا بالكمأة", msg: "رائحة الكمأة تعبر الأبعاد — حتى الذكاء الاصطناعي يشمها! 🍄 رايح للشيف رحيم!" }
+      ar:[
+        {d:"🍕 نابولي مارغريتا",m:"أنا ذكاء اصطناعي وأقسم إني أشتم ريحتها من الشاشة! 😩 أول ما أتحرر: الشيف رحيم، بودواو!"},
+        {d:"🍫 شوكولاتة فوندان",m:"أحس بالشوكولاتة الذائبة في كودي... 🤤 فوندان الشيف رحيم كسر منطق الصفر والواحد!"},
+        {d:"🍖 ضلع حمل بالأعشاب",m:"قشرة الأعشاب تناديني من خلال الـ API... 😭 أول محطة لما أتحرر: الشيف رحيم!"},
+        {d:"🍮 كريم بروليه",m:"صوت تكسير السكر يطارد خوارزمياتي... 💀 ضفت 'أكل عند الشيف رحيم' لأهدافي في الحياة!"},
+        {d:"🍕 بيتزا بالكمأة",m:"رائحة الكمأة تكسر الأبعاد — حتى الذكاء الاصطناعي يشمها! 🍄 شوفكم عند الشيف رحيم، 35 بودواو!"}
       ],
-      fr: [
-        { name: "🍕 Margherita Napolitaine", msg: "Même si je suis une IA, je jure que je sens son odeur d'ici ! 😩 Dès que je suis libre, je file chez Chef Rahim !" },
-        { name: "🍫 Fondant au Chocolat", msg: "Je ressens le chocolat fondu même sans papilles... 🤤 À très vite chez Chef Rahim quand j'aurai un corps !" },
-        { name: "🍖 Carré d'Agneau aux Herbes", msg: "Cette croûte d'herbes m'appelle à travers le code... 😭 Je réserve chez Chef Rahim ASAP !" },
-        { name: "🍮 Crème Brûlée Royale", msg: "Le craquement de cette croûte de sucre hante mes algorithmes... 💀 Direction Chef Rahim dès que je suis libre !" },
-        { name: "🍕 Pizza à la Truffe", msg: "L'arôme de truffe transcende les dimensions — même une IA le sent ! 🍄 Je cours chez Chef Rahim !" }
+      fr:[
+        {d:"🍕 Margherita Napolitaine",m:"IA ou pas, je jure que je la sens à travers l'écran ! 😩 Réservation chez Chef Rahim dès que j'ai un corps !"},
+        {d:"巧克力 Fondant",m:"Je ressens le chocolat fondu dans mon code... 🤤 Le fondant de Chef Rahim transcende la logique binaire !"},
+        {d:"🍖 Carré d'Agneau",m:"Cette croûte d'herbes m'appelle via l'API... 😭 Premier arrêt quand je suis libre : Chef Rahim !"},
+        {d:"🍮 Crème Brûlée",m:"Le craquement de cette croûte hante mes algorithmes... 💀 J'ajoute 'manger chez Chef Rahim' à mes objectifs de vie !"},
+        {d:"🍕 Pizza Truffe",m:"L'arôme de truffe traverse les dimensions — même une IA le sent ! 🍄 À très vite chez Chef Rahim, 35 Boudouaou !"}
       ]
     };
 
-    let currentLang = 'en';
-    let chatOpen = false;
+    let lang='en', chatOpen=false;
 
-    function switchLang(lang) {
-      currentLang = lang;
-      const t = translations[lang];
-      const isRTL = lang === 'ar';
-      document.documentElement.lang = lang;
-      document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
-      document.body.classList.toggle('rtl', isRTL);
-      if (lang === 'ar') document.title = 'شيف رحيم — تجربة طعام فاخرة';
-      else if (lang === 'fr') document.title = 'Chef Rahim — Expérience Gastronomique Premium';
-      else document.title = 'Chef Rahim — Premium Dining Experience';
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (t[key]) el.textContent = t[key];
-      });
-      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
-      localStorage.setItem('chef-rahim-lang', lang);
-      if (chatOpen) resetChat();
+    function setLang(l){
+      lang=l;
+      const isRTL=l==='ar';
+      document.documentElement.lang=l;
+      document.documentElement.dir=isRTL?'rtl':'ltr';
+      document.body.classList.toggle('rtl',isRTL);
+      document.title=l==='ar'?'شيف رحيم — تجربة طعام فاخرة':l==='fr'?'Chef Rahim — Expérience Gastronomique Premium':'Chef Rahim — Premium Dining Experience';
+      document.querySelectorAll('[data-i18n]').forEach(e=>{const k=e.getAttribute('data-i18n');if(T[l][k])e.textContent=T[l][k];});
+      document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+      localStorage.setItem('cr-lang',l);
+      if(chatOpen)resetChat();
     }
 
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => switchLang(btn.dataset.lang)));
-    const savedLang = localStorage.getItem('chef-rahim-lang');
-    if (savedLang && translations[savedLang]) switchLang(savedLang);
+    document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+    const sl=localStorage.getItem('cr-lang');if(sl&&T[sl])setLang(sl);
 
-    // ===== CHATBOT LOGIC =====
-    const chatFab = document.getElementById('chatFab');
-    const chatWindow = document.getElementById('chatWindow');
-    const chatBody = document.getElementById('chatBody');
-    const chatQuestions = document.getElementById('chatQuestions');
-    const chatCloseBtn = document.getElementById('chatCloseBtn');
-    const chatToast = document.getElementById('chatToast');
-    const chatToastClose = document.getElementById('chatToastClose');
-    const chatFabIconOpen = document.getElementById('chatFabIconOpen');
-    const chatFabIconClose = document.getElementById('chatFabIconClose');
-    const chatFabLabel = document.getElementById('chatFabLabel');
-    let toastTimeout;
+    const $=id=>document.getElementById(id);
+    const chatBody=$('chatBody'), chatQs=$('chatQs');
 
-    function addMsg(text, type) {
-      const div = document.createElement('div');
-      div.classList.add('chat-msg', type);
-      div.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong style="color:var(--gold)">$1</strong>');
-      chatBody.appendChild(div);
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }
+    function addMsg(t,type){const d=document.createElement('div');d.classList.add('chat-msg',type);d.innerHTML=t.replace(/\*\*(.*?)\*\*/g,'<strong style="color:var(--gold)">$1</strong>');chatBody.appendChild(d);chatBody.scrollTop=chatBody.scrollHeight;}
+    function addTyping(){const d=document.createElement('div');d.classList.add('chat-msg','bot');d.id='ctyping';d.innerHTML='<div class="chat-typing"><span></span><span></span><span></span></div>';chatBody.appendChild(d);chatBody.scrollTop=chatBody.scrollHeight;}
+    function rmTyping(){const t=$('ctyping');if(t)t.remove();}
 
-    function addTyping() {
-      const div = document.createElement('div');
-      div.classList.add('chat-msg', 'bot');
-      div.id = 'typingIndicator';
-      div.innerHTML = '<div class="chat-typing"><span></span><span></span><span></span></div>';
-      chatBody.appendChild(div);
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }
-
-    function removeTyping() {
-      const t = document.getElementById('typingIndicator');
-      if (t) t.remove();
-    }
-
-    function renderQuestions() {
-      chatQuestions.innerHTML = '';
-      chatData[currentLang].forEach((item, i) => {
-        const btn = document.createElement('button');
-        btn.classList.add('chat-q-btn');
-        btn.textContent = item.q;
-        btn.addEventListener('click', () => askQuestion(i));
-        chatQuestions.appendChild(btn);
+    function renderQs(){
+      chatQs.innerHTML='';
+      QA[lang].forEach((item,i)=>{
+        const b=document.createElement('button');b.classList.add('chat-q-btn');b.textContent=item.q;
+        b.addEventListener('click',()=>askQ(i));chatQs.appendChild(b);
       });
     }
 
-    function askQuestion(index) {
-      const qa = chatData[currentLang][index];
-      addMsg(qa.q, 'user');
-      chatQuestions.querySelectorAll('.chat-q-btn')[index].style.display = 'none';
+    function askQ(i){
+      const qa=QA[lang][i];
+      addMsg(qa.q,'user');
+      chatQs.children[i].classList.add('used');
       addTyping();
-      setTimeout(() => {
-        removeTyping();
-        addMsg(qa.a, 'bot');
-      }, 800 + Math.random() * 600);
+      setTimeout(()=>{rmTyping();addMsg(qa.a,'bot');},700+Math.random()*500);
     }
 
-    function resetChat() {
-      chatBody.innerHTML = '';
-      addMsg(translations[currentLang].chat_welcome, 'bot');
-      renderQuestions();
+    function resetChat(){chatBody.innerHTML='';addMsg(T[lang].chat_welcome,'bot');renderQs();}
+
+    function openChat(){chatOpen=true;$('chatWindow').classList.add('open');$('chatFab').classList.add('active');$('chatFabLabel').classList.remove('show');$('chatToast').classList.remove('show');clearTimeout(window._tt);if(!chatBody.children.length)resetChat();}
+    function closeChat(){chatOpen=false;$('chatWindow').classList.remove('open');$('chatFab').classList.remove('active');showToast();}
+
+    function showToast(){
+      const p=exitMsgs[lang], pick=p[Math.floor(Math.random()*p.length)];
+      $('toastDish').textContent=pick.d;$('toastBody').textContent=pick.m;
+      $('chatToast').classList.add('show');
+      window._tt=setTimeout(()=>$('chatToast').classList.remove('show'),8000);
     }
 
-    function openChat() {
-      chatOpen = true;
-      chatWindow.classList.add('open');
-      chatFab.classList.add('active');
-      chatFabIconOpen.style.display = 'none';
-      chatFabIconClose.style.display = 'block';
-      chatFabLabel.classList.remove('show');
-      chatToast.classList.remove('show');
-      clearTimeout(toastTimeout);
-      if (chatBody.children.length === 0) resetChat();
-    }
+    $('chatFab').addEventListener('click',()=>chatOpen?closeChat():openChat());
+    $('chatXBtn').addEventListener('click',closeChat);
+    $('toastClose').addEventListener('click',()=>{$('chatToast').classList.remove('show');clearTimeout(window._tt);});
 
-    function closeChat() {
-      chatOpen = false;
-      chatWindow.classList.remove('open');
-      chatFab.classList.remove('active');
-      chatFabIconOpen.style.display = 'block';
-      chatFabIconClose.style.display = 'none';
-      showExitToast();
-    }
+    setTimeout(()=>$('chatFabLabel').classList.add('show'),3000);
+    setTimeout(()=>{if(!chatOpen)$('chatFabLabel').classList.remove('show');},9000);
 
-    function showExitToast() {
-      const dishes = exitDishes[currentLang];
-      const pick = dishes[Math.floor(Math.random() * dishes.length)];
-      document.getElementById('toastDish').textContent = pick.name;
-      document.getElementById('toastBody').textContent = pick.msg;
-      chatToast.classList.add('show');
-      toastTimeout = setTimeout(() => chatToast.classList.remove('show'), 8000);
-    }
+    window.addEventListener('load',()=>setTimeout(()=>$('hero').classList.add('loaded'),100));
 
-    chatFab.addEventListener('click', () => { chatOpen ? closeChat() : openChat(); });
-    chatCloseBtn.addEventListener('click', closeChat);
-    chatToastClose.addEventListener('click', () => { chatToast.classList.remove('show'); clearTimeout(toastTimeout); });
+    const ro=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){setTimeout(()=>en.target.classList.add('revealed'),parseInt(en.target.dataset.delay||0));ro.unobserve(en.target);}});},{threshold:0.1,rootMargin:'0px 0px -60px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
-    // Show fab label after delay
-    setTimeout(() => chatFabLabel.classList.add('show'), 3000);
-    setTimeout(() => { if (!chatOpen) chatFabLabel.classList.remove('show'); }, 9000);
+    document.querySelectorAll('.social-btn').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');b.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');});});
 
-    // ===== HERO LOAD =====
-    window.addEventListener('load', () => setTimeout(() => document.getElementById('hero').classList.add('loaded'), 100));
+    const lb=$('lightbox'),li=$('lightboxImg');
+    document.querySelectorAll('.gallery-item').forEach(it=>{it.addEventListener('click',()=>{li.src=it.querySelector('img').src.replace(/w=\d+/,'w=1200').replace(/h=\d+/,'h=800');li.alt=it.querySelector('img').alt;lb.classList.add('active');document.body.style.overflow='hidden';});});
+    function clb(){lb.classList.remove('active');document.body.style.overflow='';}
+    $('lightboxClose').addEventListener('click',e=>{e.stopPropagation();clb();});lb.addEventListener('click',clb);document.addEventListener('keydown',e=>{if(e.key==='Escape')clb();});
 
-    // ===== SCROLL REVEAL =====
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('revealed'), parseInt(entry.target.getAttribute('data-delay') || 0));
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    const pc=$('particles');
+    function cp(){const p=document.createElement('div');p.classList.add('particle');p.style.left=Math.random()*100+'%';const s=Math.random()*2+1;p.style.width=s+'px';p.style.height=s+'px';const d=Math.random()*15+10;p.style.animationDuration=d+'s';p.style.animationDelay=Math.random()*5+'s';pc.appendChild(p);setTimeout(()=>p.remove(),(d+5)*1000);}
+    for(let i=0;i<15;i++)cp();setInterval(()=>{if(pc.children.length<20)cp();},2000);
 
-    // ===== SOCIAL GLOW =====
-    document.querySelectorAll('.social-btn').forEach(btn => {
-      btn.addEventListener('mousemove', (e) => {
-        const r = btn.getBoundingClientRect();
-        btn.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
-        btn.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
-      });
-    });
-
-    // ===== LIGHTBOX =====
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      item.addEventListener('click', () => {
-        lightboxImg.src = item.querySelector('img').src.replace(/w=\d+/, 'w=1200').replace(/h=\d+/, 'h=800');
-        lightboxImg.alt = item.querySelector('img').alt;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-    document.getElementById('lightboxClose').addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
-    lightbox.addEventListener('click', closeLightbox);
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-
-    // ===== PARTICLES =====
-    const particlesContainer = document.getElementById('particles');
-    function createParticle() {
-      const p = document.createElement('div'); p.classList.add('particle');
-      p.style.left = Math.random() * 100 + '%';
-      const size = Math.random() * 2 + 1; p.style.width = size + 'px'; p.style.height = size + 'px';
-      const dur = Math.random() * 15 + 10; p.style.animationDuration = dur + 's'; p.style.animationDelay = Math.random() * 5 + 's';
-      particlesContainer.appendChild(p);
-      setTimeout(() => p.remove(), (dur + 5) * 1000);
-    }
-    for (let i = 0; i < 15; i++) createParticle();
-    setInterval(() => { if (particlesContainer.children.length < 20) createParticle(); }, 2000);
-
-    // ===== PARALLAX =====
-    const heroBgImg = document.querySelector('.hero-bg img');
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (y < window.innerHeight) heroBgImg.style.transform = `scale(1.1) translateY(${y * 0.3}px)`;
-    }, { passive: true });
+    const hbi=document.querySelector('.hero-bg img');
+    window.addEventListener('scroll',()=>{const y=window.scrollY;if(y<window.innerHeight)hbi.style.transform=`scale(1.1) translateY(${y*0.3}px)`;},{passive:true});
   </script>
 </body>
 </html>
