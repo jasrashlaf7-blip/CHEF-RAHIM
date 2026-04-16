@@ -576,7 +576,7 @@
   <div class="lang-switcher" id="langSwitcher">
     <button class="lang-btn active" data-lang="en">EN</button>
     <button class="lang-btn" data-lang="ar">عربي</button>
-    <button class="lang-btn" data-lang="ku">کوردی</button>
+    <button class="lang-btn" data-lang="fr">FR</button>
   </div>
 
   <!-- Particles -->
@@ -923,45 +923,45 @@
         view_more: "عرض المزيد",
         footer_rights: "جميع الحقوق محفوظة"
       },
-      ku: {
-        hero_badge: "ئەزموونی خواردنی لوکس",
-        hero_subtitle: "هونەری چێشتکردن",
-        scroll: "بەرەو خوارێ",
-        social_overline: "پەیوەندیمان پێوە بکە",
-        social_title: "گەشتەکەمان بکەوە",
-        social_desc: "دونیای تامی خۆمان لەسەر پلاتفۆرمەکان بگەڕێ",
-        btn_restaurant: "چێشتخانە",
-        btn_restaurant_desc: "ئەزموونی خواردنی سەرەکی",
-        btn_desserts: "شیرینی",
-        btn_desserts_desc: "دروستکراوەی شیرین و کەیک",
-        btn_pizza: "پیتزا",
-        btn_pizza_desc: "پیتزای ئاگری دارین",
-        btn_facebook_desc: "کۆمەڵگە و نوێکاریەکان",
-        btn_tiktok_desc: "پشت پەردە",
-        gallery_overline: "گالێری",
-        gallery_title: "جەشنەکی بینراو",
-        gallery_desc: "نیگایەک لە دونیای چێشتکردنمان",
-        gallery_1: "پێشکەشی تایبەت",
-        gallery_2: "پیتزای ئاگری",
-        gallery_3: "شیرینی جوان",
-        gallery_4: "طبقی سوشی",
-        gallery_5: "پاستای تازە",
-        gallery_6: "چکلاتی فۆندان",
-        gallery_7: "طبقی دەریایی",
-        featured_overline: "تایبەتمەندیەکان",
-        featured_title: "دروستکراوە تایبەتەکان",
-        featured_desc: "بە خۆشەویستی و باشترین ماددەکان دروستکراوە",
-        tag_pizza: "پیتزا",
-        tag_dessert: "شیرینی",
-        tag_signature: "تایبەت",
-        featured_1_title: "نابۆلی مارگەریتا",
-        featured_1_desc: "خمیرەی دەستکرد، تەماتەی سان مارزانۆ، مۆزاریلای تازە، و ڕەیحانی بۆنخۆش لە باخچەکەمان.",
-        featured_2_title: "کریم برولی ڕۆیال",
-        featured_2_desc: "کاستاردی ڤانیلای نەرم لەگەڵ قوڕی شەکەری برژاو، تێکەڵ کراوە بە ڤانیلای ماداگاسکار.",
-        featured_3_title: "بریانی مەڕ بە ئاوێ",
-        featured_3_desc: "بریانی مەڕی بەرز بە قوڕی ئاوێی بۆنخۆش، لەگەڵ سەوزەی برژاو و سۆسی شەڕابی سوور.",
-        view_more: "زیاتر ببینە",
-        footer_rights: "هەموو مافەکان پارێزراون"
+      fr: {
+        hero_badge: "Expérience Gastronomique Premium",
+        hero_subtitle: "Art Culinaire",
+        scroll: "Défiler",
+        social_overline: "Restez en Contact",
+        social_title: "Suivez Notre Voyage",
+        social_desc: "Explorez notre monde de saveurs sur toutes les plateformes",
+        btn_restaurant: "Restaurant",
+        btn_restaurant_desc: "L'expérience dining principale",
+        btn_desserts: "Desserts",
+        btn_desserts_desc: "Créations sucrées & pâtisseries",
+        btn_pizza: "Pizza",
+        btn_pizza_desc: "Pizza artisanale au feu de bois",
+        btn_facebook_desc: "Communauté & actualités",
+        btn_tiktok_desc: "Les coulisses",
+        gallery_overline: "Notre Galerie",
+        gallery_title: "Festin Visuel",
+        gallery_desc: "Un aperçu de notre univers culinaire",
+        gallery_1: "Présentation Signature",
+        gallery_2: "Pizza au Feu de Bois",
+        gallery_3: "Dessert Artisanal",
+        gallery_4: "Assiette de Sushi",
+        gallery_5: "Pâtes Fraîches",
+        gallery_6: "Fondant au Chocolat",
+        gallery_7: "Assiette de Fruits de Mer",
+        featured_overline: "Spécialités",
+        featured_title: "Créations Signatures",
+        featured_desc: "Préparées avec passion et les meilleurs ingrédients",
+        tag_pizza: "Pizza",
+        tag_dessert: "Dessert",
+        tag_signature: "Signature",
+        featured_1_title: "Margherita Napolitaine",
+        featured_1_desc: "Pâte étirée à la main, tomates San Marzano, mozzarella fraîche et basilic parfumé de notre jardin.",
+        featured_2_title: "Crème Brûlée Royale",
+        featured_2_desc: "Crème onctueuse à la vanille avec une croûte de sucre caramélisée parfaite, infusée à la vanille de Madagascar.",
+        featured_3_title: "Carré d'Agneau aux Herbes",
+        featured_3_desc: "Carré d'agneau premium avec une croûte d'herbes parfumées, servi avec légumes rôtis et jus de vin rouge.",
+        view_more: "Voir Plus",
+        footer_rights: "Tous Droits Réservés"
       }
     };
 
@@ -970,14 +970,14 @@
     function switchLang(lang) {
       currentLang = lang;
       const t = translations[lang];
-      const isRTL = lang === 'ar' || lang === 'ku';
+      const isRTL = lang === 'ar';
 
       document.documentElement.lang = lang;
       document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
       document.body.classList.toggle('rtl', isRTL);
 
       if (lang === 'ar') document.title = 'شيف رحيم — تجربة طعام فاخرة';
-      else if (lang === 'ku') document.title = 'Chef Rahim — ئەزموونی خواردنی لوکس';
+      else if (lang === 'fr') document.title = 'Chef Rahim — Expérience Gastronomique Premium';
       else document.title = 'Chef Rahim — Premium Dining Experience';
 
       document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -1079,4 +1079,3 @@
   </script>
 </body>
 </html>
-        
