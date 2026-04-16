@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chef Rahim — Premium Dining Experience</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --gold: #FACC15;
+      --gold-light: #FDE68A;
+      --gold-dark: #EAB308;
+      --dark: #111827;
+      --dark-light: #1F2937;
+      --dark-lighter: #374151;
+      --dark-card: rgba(17, 24, 39, 0.6);
+      --glass-bg: rgba(255, 255, 255, 0.06);
+      --glass-border: rgba(250, 204, 21, 0.15);
+      --glass-hover: rgba(250, 204, 21, 0.1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark);
+      color: #fff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold-dark);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gold);
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.2) saturate(0.7);
+      transform: scale(1.1);
+      transition: transform 8s ease-out;
+    }
+
+    .hero.loaded .hero-bg img {
+      transform: scale(1);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at center, rgba(17, 24, 39, 0.3) 0%, rgba(17, 24, 39, 0.85) 70%),
+        linear-gradient(180deg, rgba(17, 24, 39, 0.6) 0%, rgba(17, 24, 39, 0.4) 40%, rgba(17, 24, 39, 0.9) 100%);
+      z-index: 1;
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease-out 0.3s forwards;
+    }
+
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    .hero-logo-wrapper {
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+      animation: fadeUpScale 1.2s ease-out 0.6s forwards;
+    }
+
+    .hero-logo {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .hero-logo-icon {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .hero-logo-icon svg {
+      width: 100%;
+      height: 100%;
+      color: var(--gold);
+      filter: drop-shadow(0 0 20px rgba(250, 204, 21, 0.3));
+    }
+
+    .hero-logo-icon::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      animation: rotate-slow 20s linear infinite;
+      border-top-color: transparent;
+      border-left-color: transparent;
+    }
+
+    @keyframes rotate-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 8vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #fff 0%, var(--gold-light) 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.6rem, 1.5vw, 0.85rem);
+      font-weight: 300;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 0.75rem;
+    }
+
+    .hero-handle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      margin-top: 2.5rem;
+      border: 1px solid rgba(250, 204, 21, 0.25);
+      border-radius: 60px;
+      background: rgba(250, 204, 21, 0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--gold-light);
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease-out 1.2s forwards;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .hero-handle:hover {
+      background: rgba(250, 204, 21, 0.12);
+      border-color: rgba(250, 204, 21, 0.5);
+      box-shadow: 0 0 40px rgba(250, 204, 21, 0.15);
+      transform: translateY(-2px) !important;
+    }
+
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp 1s ease-out 1.8s forwards;
+    }
+
+    .hero-scroll-indicator span {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
+      animation: scroll-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scroll-pulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.6); transform-origin: top; }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* ===== SOCIAL SECTION ===== */
+    .social-section {
+      position: relative;
+      padding: 5rem 1.5rem 6rem;
+      background: linear-gradient(180deg, var(--dark) 0%, var(--dark-light) 50%, var(--dark) 100%);
+    }
+
+    .social-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(180deg, transparent 0%, var(--gold) 100%);
+    }
+
+    .section-label {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-label-overline {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-label-title {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+
+    .section-label-desc {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 0.5rem;
+    }
+
+    .social-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .social-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 24px;
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      text-decoration: none;
+      color: #fff;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .social-btn.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .social-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), var(--glass-hover) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .social-btn:hover::before {
+      opacity: 1;
+    }
+
+    .social-btn:hover {
+      border-color: rgba(250, 204, 21, 0.35);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 60px rgba(250, 204, 21, 0.08);
+    }
+
+    .social-btn-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: rgba(250, 204, 21, 0.1);
+      border: 1px solid rgba(250, 204, 21, 0.1);
+      transition: all 0.4s;
+    }
+
+    .social-btn:hover .social-btn-icon {
+      background: rgba(250, 204, 21, 0.2);
+      border-color: rgba(250, 204, 21, 0.3);
+      box-shadow: 0 0 20px rgba(250, 204, 21, 0.15);
+    }
+
+    .social-btn-icon svg,
+    .social-btn-icon i {
+      width: 20px;
+      height: 20px;
+      color: var(--gold);
+    }
+
+    .social-btn-text {
+      position: relative;
+      z-index: 1;
+    }
+
+    .social-btn-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    .social-btn-desc {
+      font-size: 0.7rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 0.05em;
+    }
+
+    .social-btn-arrow {
+      margin-left: auto;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .social-btn-arrow svg {
+      width: 16px;
+      height: 16px;
+      color: var(--gold);
+    }
+
+    .social-btn:hover .social-btn-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Custom SVG icons for social platforms */
+    .icon-instagram svg { width: 20px; height: 20px; }
+    .icon-facebook svg { width: 20px; height: 20px; }
+    .icon-tiktok svg { width: 20px; height: 20px; }
+
+    /* ===== DIVIDER ===== */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 2rem 1.5rem;
+    }
+
+    .section-divider .line {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dark));
+    }
+
+    .section-divider .line:last-child {
+      background: linear-gradient(90deg, var(--gold-dark), transparent);
+    }
+
+    .section-divider .diamond {
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      opacity: 0.6;
+    }
+
+    /* ===== GALLERY SECTION ===== */
+    .gallery-section {
+      position: relative;
+      padding: 4rem 1.5rem 6rem;
+      background: var(--dark);
+    }
+
+    .gallery-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(40px) scale(0.97);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .gallery-item.revealed {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .gallery-item:nth-child(1) {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .gallery-item:nth-child(4) {
+      grid-column: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 220px;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s;
+      filter: brightness(0.85) saturate(0.9);
+    }
+
+    .gallery-item:nth-child(1) img {
+      min-height: 460px;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+      filter: brightness(1) saturate(1.1);
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(17, 24, 39, 0.8) 100%);
+      opacity: 0;
+      transition: opacity 0.5s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+    }
+
+    .gallery-item:hover .gallery-item-overlay {
+      opacity: 1;
+    }
+
+    .gallery-item-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      transform: translateY(10px);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .gallery-item:hover .gallery-item-label {
+      transform: translateY(0);
+    }
+
+    .gallery-item-border {
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(250, 204, 21, 0);
+      border-radius: 16px;
+      transition: border-color 0.5s;
+      pointer-events: none;
+    }
+
+    .gallery-item:hover .gallery-item-border {
+      border-color: rgba(250, 204, 21, 0.2);
+    }
+
+    /* ===== FEATURED DISHES ===== */
+    .featured-section {
+      padding: 4rem 1.5rem 6rem;
+      background: linear-gradient(180deg, var(--dark) 0%, var(--dark-light) 100%);
+    }
+
+    .featured-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .featured-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid rgba(250, 204, 21, 0.08);
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .featured-card.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .featured-card:hover {
+      border-color: rgba(250, 204, 21, 0.25);
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(250, 204, 21, 0.06);
+    }
+
+    .featured-card-img {
+      position: relative;
+      height: 280px;
+      overflow: hidden;
+    }
+
+    .featured-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: brightness(0.9) saturate(0.95);
+    }
+
+    .featured-card:hover .featured-card-img img {
+      transform: scale(1.1);
+      filter: brightness(1) saturate(1.1);
+    }
+
+    .featured-card-img::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(transparent, rgba(17, 24, 39, 0.8));
+    }
+
+    .featured-card-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      padding: 6px 14px;
+      border-radius: 50px;
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(250, 204, 21, 0.2);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      z-index: 1;
+    }
+
+    .featured-card-body {
+      padding: 1.5rem;
+    }
+
+    .featured-card-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .featured-card-desc {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.4);
+      line-height: 1.6;
+    }
+
+    .featured-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .featured-card-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .featured-card-rating svg {
+      width: 14px;
+      height: 14px;
+      color: var(--gold);
+      fill: var(--gold);
+    }
+
+    .featured-card-rating span {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.6);
+      margin-left: 4px;
+    }
+
+    .featured-card-link {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: gap 0.3s;
+    }
+
+    .featured-card-link:hover {
+      gap: 8px;
+    }
+
+    .featured-card-link svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      position: relative;
+      padding: 3rem 1.5rem;
+      background: var(--dark);
+      border-top: 1px solid rgba(250, 204, 21, 0.08);
+      text-align: center;
+    }
+
+    .footer-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-logo-icon {
+      width: 32px;
+      height: 32px;
+      color: var(--gold);
+    }
+
+    .footer-logo-text {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.02em;
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: transparent;
+      transition: all 0.3s;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .footer-social a:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(250, 204, 21, 0.05);
+      transform: translateY(-2px);
+    }
+
+    .footer-social a svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.25);
+      letter-spacing: 0.1em;
+    }
+
+    .footer-copy .gold {
+      color: var(--gold-dark);
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUpScale {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 12px;
+      transform: scale(0.9);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox.active img {
+      transform: scale(1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .lightbox-close svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* ===== FLOATING PARTICLES ===== */
+    .particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      animation: float-particle linear infinite;
+    }
+
+    @keyframes float-particle {
+      0% {
+        opacity: 0;
+        transform: translateY(100vh) scale(0);
+      }
+      10% {
+        opacity: 0.6;
+      }
+      90% {
+        opacity: 0.2;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-10vh) scale(1);
+      }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-item:nth-child(1) {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+
+      .gallery-item:nth-child(1) img {
+        min-height: 320px;
+      }
+
+      .gallery-item:nth-child(4) {
+        grid-column: span 1;
+      }
+
+      .featured-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .featured-grid .featured-card:last-child {
+        grid-column: span 2;
+        max-width: 50%;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-logo-icon {
+        width: 56px;
+        height: 56px;
+      }
+
+      .social-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+      }
+
+      .gallery-item:nth-child(1) {
+        grid-column: span 2;
+      }
+
+      .gallery-item img {
+        min-height: 160px;
+      }
+
+      .gallery-item:nth-child(1) img {
+        min-height: 240px;
+      }
+
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-grid .featured-card:last-child {
+        grid-column: span 1;
+        max-width: 100%;
+      }
+
+      .featured-card-img {
+        height: 220px;
+      }
+
+      .hero-scroll-indicator {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item:nth-child(1) {
+        grid-column: span 1;
+      }
+
+      .gallery-item:nth-child(4) {
+        grid-column: span 1;
+      }
+
+      .gallery-item img {
+        min-height: 200px;
+      }
+
+      .gallery-item:nth-child(1) img {
+        min-height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Particles -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <img src="" alt="Gallery Image" id="lightboxImg">
+  </div>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="https://picsum.photos/seed/luxury-dining-dark/1920/1080.jpg" alt="Fine Dining Background" loading="eager">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-grain"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Premium Dining Experience
+      </div>
+
+      <div class="hero-logo-wrapper">
+        <div class="hero-logo">
+          <div class="hero-logo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/>
+              <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+              <line x1="9" y1="9" x2="9.01" y2="9"/>
+              <line x1="15" y1="9" x2="15.01" y2="9"/>
+            </svg>
+          </div>
+          <h1 class="hero-title">Chef Rahim</h1>
+          <p class="hero-subtitle">Culinary Artistry</p>
+        </div>
+      </div>
+
+      <a href="https://www.instagram.com/restaurant_chef_rahim/" target="_blank" rel="noopener" class="hero-handle">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        @restaurant.rahim35
+      </a>
+    </div>
+
+    <div class="hero-scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ===== SOCIAL SECTION ===== -->
+  <section class="social-section" id="social">
+    <div class="section-label reveal">
+      <p class="section-label-overline">Connect With Us</p>
+      <h2 class="section-label-title">Follow Our Journey</h2>
+      <p class="section-label-desc">Explore our world of flavors across platforms</p>
+    </div>
+
+    <div class="social-grid">
+      <!-- Restaurant Instagram -->
+      <a href="https://www.instagram.com/restaurant_chef_rahim/" target="_blank" rel="noopener" class="social-btn reveal" data-delay="0">
+        <div class="social-btn-icon icon-instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <div class="social-btn-text">
+          <div class="social-btn-name">Restaurant</div>
+          <div class="social-btn-desc">Main dining experience</div>
+        </div>
+        <div class="social-btn-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <!-- Dessert Instagram -->
+      <a href="https://www.instagram.com/dessert_chef_rahim?igsh=Mm81NXlwcGF5bnZt" target="_blank" rel="noopener" class="social-btn reveal" data-delay="100">
+        <div class="social-btn-icon icon-instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <div class="social-btn-text">
+          <div class="social-btn-name">Desserts</div>
+          <div class="social-btn-desc">Sweet creations & pastries</div>
+        </div>
+        <div class="social-btn-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <!-- Pizza Instagram -->
+      <a href="https://www.instagram.com/pizza_chef_rahim?igsh=cWh3MTIwNnBhdmF3" target="_blank" rel="noopener" class="social-btn reveal" data-delay="200">
+        <div class="social-btn-icon icon-instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <div class="social-btn-text">
+          <div class="social-btn-name">Pizza</div>
+          <div class="social-btn-desc">Artisan wood-fired pizza</div>
+        </div>
+        <div class="social-btn-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/people/Restaurant-chef-rahim/61565078708085/?_rdc=1&_rdr#" target="_blank" rel="noopener" class="social-btn reveal" data-delay="300">
+        <div class="social-btn-icon icon-facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </div>
+        <div class="social-btn-text">
+          <div class="social-btn-name">Facebook</div>
+          <div class="social-btn-desc">Community & updates</div>
+        </div>
+        <div class="social-btn-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@restaurant.chef.rahim" target="_blank" rel="noopener" class="social-btn reveal" data-delay="400">
+        <div class="social-btn-icon icon-tiktok">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        </div>
+        <div class="social-btn-text">
+          <div class="social-btn-name">TikTok</div>
+          <div class="social-btn-desc">Behind the scenes</div>
+        </div>
+        <div class="social-btn-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== DIVIDER ===== -->
+  <div class="section-divider">
+    <div class="line"></div>
+    <div class="diamond"></div>
+    <div class="line"></div>
+  </div>
+
+  <!-- ===== GALLERY SECTION ===== -->
+  <section class="gallery-section" id="gallery">
+    <div class="section-label reveal">
+      <p class="section-label-overline">Our Gallery</p>
+      <h2 class="section-label-title">Visual Feast</h2>
+      <p class="section-label-desc">A glimpse into our culinary world</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item reveal" data-delay="0">
+        <img src="https://picsum.photos/seed/gourmet-steak-plated/800/600.jpg" alt="Gourmet Steak" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Signature Steak</span></div>
+        <div class="gallery-item-border"></div>
+      </div>
+      <div class="gallery-item reveal" data-delay="100">
+        <img src="https://picsum.photos/seed/artisan-pizza-wood/600/400.jpg" alt="Artisan Pizza" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Wood-Fired Pizza</span></div>
+        <div class="gallery-item-border"></div>
+      </div>
+      <div class="gallery-item reveal" data-delay="200">
+        <img src="https://picsum.photos/seed/luxury-dessert-gold/600/400.jpg" alt="Luxury Dessert" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Golden Dessert</span></div>
+        <div class="gallery-item-border"></div>
+      </div>
+      <div class="gallery-item reveal" data-delay="300">
+        <img src="https://picsum.photos/seed/fine-dining-sushi/800/400.jpg" alt="Sushi Platter" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Sushi Platter</span></div>
+        <div class="gallery-item-border"></div>
+      </div>
+      <div class="gallery-item reveal" data-delay="400">
+        <img src="https://picsum.photos/seed/pasta-truffle-dish/600/400.jpg" alt="Truffle Pasta" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Truffle Pasta</span></div>
+        <div class="gallery-item-border"></div>
+      </div>
+      <div class="gallery-item reveal" data-delay="500">
+        <img src="https://picsum.photos/seed/chocolate-fondant/600/400.jpg" alt="Chocolate Fondant" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Chocolate Fondant</span></div>
+        <div class="gallery-item-border"></div>
+      </div>
+      <div class="gallery-item reveal" data-delay="600">
+        <img src="https://picsum.photos/seed/seafood-platter-fine/600/400.jpg" alt="Seafood Platter" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Seafood Platter</span></div>
+        <div class="gallery-item-border"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DIVIDER ===== -->
+  <div class="section-divider">
+    <div class="line"></div>
+    <div class="diamond"></div>
+    <div class="line"></div>
+  </div>
+
+  <!-- ===== FEATURED DISHES ===== -->
+  <section class="featured-section" id="featured">
+    <div class="section-label reveal">
+      <p class="section-label-overline">Specialties</p>
+      <h2 class="section-label-title">Signature Creations</h2>
+      <p class="section-label-desc">Crafted with passion and the finest ingredients</p>
+    </div>
+
+    <div class="featured-grid">
+      <!-- Pizza Card -->
+      <div class="featured-card reveal" data-delay="0">
+        <div class="featured-card-img">
+          <span class="featured-card-tag">Pizza</span>
+          <img src="https://picsum.photos/seed/neapolitan-margherita/600/500.jpg" alt="Neapolitan Margherita" loading="lazy">
+        </div>
+        <div class="featured-card-body">
+          <h3 class="featured-card-title">Neapolitan Margherita</h3>
+          <p class="featured-card-desc">Hand-stretched dough, San Marzano tomatoes, fresh mozzarella, and fragrant basil from our garden.</p>
+        </div>
+        <div class="featured-card-footer">
+          <div class="featured-card-rating">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>4.9</span>
+          </div>
+          <a href="https://www.instagram.com/pizza_chef_rahim?igsh=cWh3MTIwNnBhdmF3" target="_blank" rel="noopener" class="featured-card-link">
+            View More
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Dessert Card -->
+      <div class="featured-card reveal" data-delay="200">
+        <div class="featured-card-img">
+          <span class="featured-card-tag">Dessert</span>
+          <img src="https://picsum.photos/seed/creme-brulee-gold/600/500.jpg" alt="Crème Brûlée" loading="lazy">
+        </div>
+        <div class="featured-card-body">
+          <h3 class="featured-card-title">Crème Brûlée Royale</h3>
+          <p class="featured-card-desc">Velvety vanilla bean custard with a perfectly caramelized sugar crust, infused with Madagascar vanilla.</p>
+        </div>
+        <div class="featured-card-footer">
+          <div class="featured-card-rating">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>5.0</span>
+          </div>
+          <a href="https://www.instagram.com/dessert_chef_rahim?igsh=Mm81NXlwcGF5bnZt" target="_blank" rel="noopener" class="featured-card-link">
+            View More
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Dish Card -->
+      <div class="featured-card reveal" data-delay="400">
+        <div class="featured-card-img">
+          <span class="featured-card-tag">Signature</span>
+          <img src="https://picsum.photos/seed/lamb-rack-herbs/600/500.jpg" alt="Herb-Crusted Lamb" loading="lazy">
+        </div>
+        <div class="featured-card-body">
+          <h3 class="featured-card-title">Herb-Crusted Lamb Rack</h3>
+          <p class="featured-card-desc">Premium lamb rack with a fragrant herb crust, served with roasted vegetables and red wine jus.</p>
+        </div>
+        <div class="featured-card-footer">
+          <div class="featured-card-rating">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>4.8</span>
+          </div>
+          <a href="https://www.instagram.com/restaurant_chef_rahim/" target="_blank" rel="noopener" class="featured-card-link">
+            View More
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <svg class="footer-logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/>
+        <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+        <line x1="9" y1="9" x2="9.01" y2="9"/>
+        <line x1="15" y1="9" x2="15.01" y2="9"/>
+      </svg>
+      <span class="footer-logo-text">Chef Rahim</span>
+    </div>
+
+    <div class="footer-social">
+      <a href="https://www.instagram.com/restaurant_chef_rahim/" target="_blank" rel="noopener" aria-label="Instagram Restaurant">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="https://www.instagram.com/dessert_chef_rahim?igsh=Mm81NXlwcGF5bnZt" target="_blank" rel="noopener" aria-label="Instagram Desserts">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="https://www.instagram.com/pizza_chef_rahim?igsh=cWh3MTIwNnBhdmF3" target="_blank" rel="noopener" aria-label="Instagram Pizza">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="https://www.facebook.com/people/Restaurant-chef-rahim/61565078708085/?_rdc=1&_rdr#" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@restaurant.chef.rahim" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+      </a>
+    </div>
+
+    <p class="footer-copy">© 2026 <span class="gold">Chef Rahim</span> — All Rights Reserved</p>
+  </footer>
+
+  <script>
+    // ===== HERO LOAD ANIMATION =====
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('hero').classList.add('loaded');
+      }, 100);
+    });
+
+    // ===== SCROLL REVEAL =====
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.getAttribute('data-delay') || 0;
+          setTimeout(() => {
+            entry.target.classList.add('revealed');
+          }, parseInt(delay));
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -60px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // ===== SOCIAL BUTTON MOUSE TRACKING =====
+    document.querySelectorAll('.social-btn').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        btn.style.setProperty('--mx', x + '%');
+        btn.style.setProperty('--my', y + '%');
+      });
+    });
+
+    // ===== LIGHTBOX =====
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeLightbox();
+    });
+
+    lightbox.addEventListener('click', closeLightbox);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // ===== FLOATING PARTICLES =====
+    const particlesContainer = document.getElementById('particles');
+
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+
+      const left = Math.random() * 100;
+      const size = Math.random() * 2 + 1;
+      const duration = Math.random() * 15 + 10;
+      const delay = Math.random() * 5;
+
+      particle.style.left = left + '%';
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+      particle.style.animationDuration = duration + 's';
+      particle.style.animationDelay = delay + 's';
+
+      particlesContainer.appendChild(particle);
+
+      setTimeout(() => {
+        particle.remove();
+      }, (duration + delay) * 1000);
+    }
+
+    // Create initial batch
+    for (let i = 0; i < 15; i++) {
+      createParticle();
+    }
+
+    // Continue creating particles
+    setInterval(() => {
+      if (particlesContainer.children.length < 20) {
+        createParticle();
+      }
+    }, 2000);
+
+    // ===== SUBTLE PARALLAX ON HERO =====
+    const heroBg = document.querySelector('.hero-bg img');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (scrollY < window.innerHeight) {
+        const parallaxOffset = scrollY * 0.3;
+        heroBg.style.transform = `scale(1.1) translateY(${parallaxOffset}px)`;
+      }
+    }, { passive: true });
+
+    // ===== SMOOTH SCROLL FOR INTERNAL LINKS =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
