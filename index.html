@@ -45,7 +45,6 @@
       z-index: 999;
       display: flex;
       align-items: center;
-      gap: 0;
       border-radius: 50px;
       border: 1px solid var(--glass-border);
       background: rgba(17,24,39,0.8);
@@ -69,17 +68,10 @@
       letter-spacing: 0.05em;
       cursor: pointer;
       transition: all 0.3s;
-      position: relative;
     }
 
     .lang-btn:hover { color: rgba(255,255,255,0.7); }
-
-    .lang-btn.active {
-      color: var(--dark);
-      background: var(--gold);
-      font-weight: 600;
-    }
-
+    .lang-btn.active { color: var(--dark); background: var(--gold); font-weight: 600; }
     .lang-btn + .lang-btn { border-left: 1px solid rgba(250,204,21,0.1); }
     body.rtl .lang-btn + .lang-btn { border-left: none; border-right: 1px solid rgba(250,204,21,0.1); }
 
@@ -601,7 +593,7 @@
   <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
     <div class="hero-bg">
-      <img src="assets/hero-bg.jpg" alt="Fine Dining">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&h=1080&fit=crop&q=80" alt="Fine Dining">
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-grain"></div>
@@ -707,37 +699,37 @@
     </div>
     <div class="gallery-grid">
       <div class="gallery-item reveal" data-delay="0">
-        <img src="assets/gallery-1.jpg" alt="Gourmet Plated Dish">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop&q=80" alt="Gourmet Plated Dish">
         <div class="gallery-item-overlay"><span class="gallery-item-label" data-i18n="gallery_1">Signature Plating</span></div>
         <div class="gallery-item-border"></div>
       </div>
       <div class="gallery-item reveal" data-delay="100">
-        <img src="assets/gallery-2.jpg" alt="Wood-Fired Pizza">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop&q=80" alt="Wood-Fired Pizza">
         <div class="gallery-item-overlay"><span class="gallery-item-label" data-i18n="gallery_2">Wood-Fired Pizza</span></div>
         <div class="gallery-item-border"></div>
       </div>
       <div class="gallery-item reveal" data-delay="200">
-        <img src="assets/gallery-3.jpg" alt="Luxury Dessert">
+        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&h=400&fit=crop&q=80" alt="Luxury Dessert">
         <div class="gallery-item-overlay"><span class="gallery-item-label" data-i18n="gallery_3">Artisan Dessert</span></div>
         <div class="gallery-item-border"></div>
       </div>
       <div class="gallery-item reveal" data-delay="300">
-        <img src="assets/gallery-4.jpg" alt="Sushi Platter">
+        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800&h=400&fit=crop&q=80" alt="Sushi Platter">
         <div class="gallery-item-overlay"><span class="gallery-item-label" data-i18n="gallery_4">Sushi Platter</span></div>
         <div class="gallery-item-border"></div>
       </div>
       <div class="gallery-item reveal" data-delay="400">
-        <img src="assets/gallery-5.jpg" alt="Pasta Dish">
+        <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=600&h=400&fit=crop&q=80" alt="Pasta Dish">
         <div class="gallery-item-overlay"><span class="gallery-item-label" data-i18n="gallery_5">Fresh Pasta</span></div>
         <div class="gallery-item-border"></div>
       </div>
       <div class="gallery-item reveal" data-delay="500">
-        <img src="assets/gallery-6.jpg" alt="Chocolate Fondant">
+        <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&h=400&fit=crop&q=80" alt="Chocolate Fondant">
         <div class="gallery-item-overlay"><span class="gallery-item-label" data-i18n="gallery_6">Chocolate Fondant</span></div>
         <div class="gallery-item-border"></div>
       </div>
       <div class="gallery-item reveal" data-delay="600">
-        <img src="assets/gallery-7.jpg" alt="Seafood Platter">
+        <img src="https://images.unsplash.com/photo-1534483509719-8b3273b0b9c9?w=600&h=400&fit=crop&q=80" alt="Seafood Platter">
         <div class="gallery-item-overlay"><span class="gallery-item-label" data-i18n="gallery_7">Seafood Platter</span></div>
         <div class="gallery-item-border"></div>
       </div>
@@ -757,7 +749,7 @@
       <div class="featured-card reveal" data-delay="0">
         <div class="featured-card-img">
           <span class="featured-card-tag" data-i18n="tag_pizza">Pizza</span>
-          <img src="assets/featured-pizza.jpg" alt="Neapolitan Margherita">
+          <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&h=500&fit=crop&q=80" alt="Neapolitan Margherita">
         </div>
         <div class="featured-card-body">
           <h3 class="featured-card-title" data-i18n="featured_1_title">Neapolitan Margherita</h3>
@@ -777,7 +769,7 @@
       <div class="featured-card reveal" data-delay="200">
         <div class="featured-card-img">
           <span class="featured-card-tag" data-i18n="tag_dessert">Dessert</span>
-          <img src="assets/featured-dessert.jpg" alt="Crème Brûlée">
+          <img src="https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?w=600&h=500&fit=crop&q=80" alt="Crème Brûlée">
         </div>
         <div class="featured-card-body">
           <h3 class="featured-card-title" data-i18n="featured_2_title">Crème Brûlée Royale</h3>
@@ -797,7 +789,7 @@
       <div class="featured-card reveal" data-delay="400">
         <div class="featured-card-img">
           <span class="featured-card-tag" data-i18n="tag_signature">Signature</span>
-          <img src="assets/featured-main.jpg" alt="Herb-Crusted Lamb">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=500&fit=crop&q=80" alt="Herb-Crusted Lamb">
         </div>
         <div class="featured-card-body">
           <h3 class="featured-card-title" data-i18n="featured_3_title">Herb-Crusted Lamb Rack</h3>
@@ -908,7 +900,7 @@
         btn_tiktok_desc: "خلف الكواليس",
         gallery_overline: "معرض الصور",
         gallery_title: "مائدة بصرية",
-        gallery_desc: "لمحة عن عالمنا Culinary",
+        gallery_desc: "لمحة عن عالمنا الطبخي",
         gallery_1: "تقديم مميز",
         gallery_2: "بيتزا نار حرفية",
         gallery_3: "حلوى فاخرة",
@@ -925,7 +917,7 @@
         featured_1_title: "نابولي مارغريتا",
         featured_1_desc: "عجينة مشدودة يدوياً، طماطم سان مارزانو، موزاريلا طازجة، وريحان معطر من حديقتنا.",
         featured_2_title: "كريم بروليه رويال",
-        featured_2_desc: "كاسترد فانيلا سيلكي مع قشرة سكر مقرمشة مثالية، منكّه بفانيلا مدغشقر.",
+        featured_2_desc: "كاسترد فانيلا ناعم مع قشرة سكر مقرمشة مثالية، منكّه بفانيلا مدغشقر.",
         featured_3_title: "ضلع حمل بالأعشاب",
         featured_3_desc: "ضلع حمل ممتاز بقشرة أعشاب عطرة، يقدم مع خضار محمصة وصوص نبيذ أحمر.",
         view_more: "عرض المزيد",
@@ -966,8 +958,8 @@
         featured_1_desc: "خمیرەی دەستکرد، تەماتەی سان مارزانۆ، مۆزاریلای تازە، و ڕەیحانی بۆنخۆش لە باخچەکەمان.",
         featured_2_title: "کریم برولی ڕۆیال",
         featured_2_desc: "کاستاردی ڤانیلای نەرم لەگەڵ قوڕی شەکەری برژاو، تێکەڵ کراوە بە ڤانیلای ماداگاسکار.",
-        featured_3_title: "بریانی مەڕ بە ئاوی",
-        featured_3_desc: "بریانی مەڕی بەرز بە قوڕی ئاوی بۆنخۆش، لەگەڵ سەوزەی برژاو و سۆسی شەڕابی سوور.",
+        featured_3_title: "بریانی مەڕ بە ئاوێ",
+        featured_3_desc: "بریانی مەڕی بەرز بە قوڕی ئاوێی بۆنخۆش، لەگەڵ سەوزەی برژاو و سۆسی شەڕابی سوور.",
         view_more: "زیاتر ببینە",
         footer_rights: "هەموو مافەکان پارێزراون"
       }
@@ -980,41 +972,32 @@
       const t = translations[lang];
       const isRTL = lang === 'ar' || lang === 'ku';
 
-      // Update direction
       document.documentElement.lang = lang;
       document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
       document.body.classList.toggle('rtl', isRTL);
 
-      // Update page title
       if (lang === 'ar') document.title = 'شيف رحيم — تجربة طعام فاخرة';
       else if (lang === 'ku') document.title = 'Chef Rahim — ئەزموونی خواردنی لوکس';
       else document.title = 'Chef Rahim — Premium Dining Experience';
 
-      // Update all translatable elements
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (t[key]) el.textContent = t[key];
       });
 
-      // Update active button
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === lang);
       });
 
-      // Save preference
       localStorage.setItem('chef-rahim-lang', lang);
     }
 
-    // Language button clicks
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', () => switchLang(btn.dataset.lang));
     });
 
-    // Load saved language
     const savedLang = localStorage.getItem('chef-rahim-lang');
-    if (savedLang && translations[savedLang]) {
-      switchLang(savedLang);
-    }
+    if (savedLang && translations[savedLang]) switchLang(savedLang);
 
     // ===== HERO LOAD =====
     window.addEventListener('load', () => {
@@ -1034,7 +1017,7 @@
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // ===== SOCIAL BUTTON GLOW =====
+    // ===== SOCIAL GLOW =====
     document.querySelectorAll('.social-btn').forEach(btn => {
       btn.addEventListener('mousemove', (e) => {
         const r = btn.getBoundingClientRect();
@@ -1049,7 +1032,7 @@
 
     document.querySelectorAll('.gallery-item').forEach(item => {
       item.addEventListener('click', () => {
-        lightboxImg.src = item.querySelector('img').src;
+        lightboxImg.src = item.querySelector('img').src.replace(/w=\d+/, 'w=1200').replace(/h=\d+/, 'h=800');
         lightboxImg.alt = item.querySelector('img').alt;
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -1096,3 +1079,4 @@
   </script>
 </body>
 </html>
+        
